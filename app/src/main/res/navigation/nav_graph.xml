@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/limestoneFragment"
+        android:name="com.example.machines.LimestoneFragment"
+        android:label="fragment_limestone"
+        tools:layout="@layout/fragment_limestone" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/clayCrusherFragment"
+        android:name="com.example.machines.ClayCrusherFragment"
+        android:label="fragment_clay_crusher"
+        tools:layout="@layout/fragment_clay_crusher" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.machines.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_limestoneFragment"
+            app:destination="@id/limestoneFragment" />
+    </fragment>
+</navigation>

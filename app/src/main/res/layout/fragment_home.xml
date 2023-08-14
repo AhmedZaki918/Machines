@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_clay_crusher"
+        style="@style/cardView"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/machine_name"
+        android:text="@string/clay_crusher"
+        app:layout_constraintEnd_toEndOf="@+id/cv_clay_crusher"
+        app:layout_constraintStart_toStartOf="@+id/cv_clay_crusher"
+        app:layout_constraintTop_toBottomOf="@+id/cv_clay_crusher" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_limestone_crusher"
+        style="@style/cardView"
+        android:layout_marginEnd="24dp"
+        android:contentDescription="@string/limestone_crusher"
+        app:layout_constraintEnd_toStartOf="@+id/cv_clay_crusher"
+        app:layout_constraintTop_toTopOf="@+id/cv_clay_crusher">
+
+        <ImageView
+            android:id="@+id/iv_limestone_crusher"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_limestone_crusher"
+        style="@style/machine_name"
+        android:text="@string/limestone_crusher"
+        app:layout_constraintEnd_toEndOf="@+id/cv_limestone_crusher"
+        app:layout_constraintStart_toStartOf="@+id/cv_limestone_crusher"
+        app:layout_constraintTop_toBottomOf="@+id/cv_limestone_crusher" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_raw_mill"
+        style="@style/cardView"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_clay_crusher"
+        app:layout_constraintTop_toTopOf="@+id/cv_clay_crusher">
+
+        <ImageView
+            android:id="@+id/iv_raw_mill"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_raw_mill"
+        style="@style/machine_name"
+        android:text="@string/raw_mill"
+        app:layout_constraintEnd_toEndOf="@+id/cv_raw_mill"
+        app:layout_constraintStart_toStartOf="@+id/cv_raw_mill"
+        app:layout_constraintTop_toBottomOf="@+id/cv_raw_mill" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

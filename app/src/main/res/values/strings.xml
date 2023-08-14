@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Machines</string>
+    <string name="go_back_content_desc">Go back</string>
+    <string name="clay_crusher">Clay Crusher</string>
+    <string name="limestone_crusher">Limestone Crusher</string>
+    <string name="raw_mill">Raw Mill</string>
+
+</resources>
