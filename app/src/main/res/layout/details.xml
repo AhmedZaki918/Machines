@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:paddingVertical="8dp">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_show_clients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#343633"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <ImageButton
+                android:id="@+id/iv_add_time_manual"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:contentDescription="@string/add_time_manual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/outline_edit" />
+
+
+            <ImageButton
+                android:id="@+id/iv_add_time_auto"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:contentDescription="@string/add_time_cd"
+                app:layout_constraintStart_toEndOf="@+id/iv_add_time_manual"
+                app:layout_constraintTop_toTopOf="@+id/iv_add_time_manual"
+                app:srcCompat="@drawable/outline_add_box" />
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="00:00"
+                android:textColor="@color/offWhite_light_alpha"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_add_time_auto"
+                app:layout_constraintStart_toEndOf="@+id/iv_add_time_auto"
+                app:layout_constraintTop_toTopOf="@+id/iv_add_time_auto"
+                tools:ignore="HardcodedText" />
+
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="00:00"
+                android:textColor="@color/offWhite_light_alpha"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_start_time"
+                app:layout_constraintStart_toEndOf="@+id/tv_start_time"
+                app:layout_constraintTop_toTopOf="@+id/tv_start_time"
+                tools:ignore="HardcodedText" />
+
+
+            <TextView
+                android:id="@+id/tv_rh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:0"
+                android:textColor="@color/offWhite_light_alpha"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_end_time"
+                app:layout_constraintEnd_toStartOf="@+id/iv_clear"
+                app:layout_constraintTop_toTopOf="@+id/tv_end_time"
+                tools:ignore="HardcodedText" />
+
+
+            <ImageButton
+                android:id="@+id/iv_clear"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:contentDescription="@string/add_time_cd"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_rh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_rh"
+                app:srcCompat="@drawable/outline_clear" />
+
+            <EditText
+                android:id="@+id/et_reason"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@null"
+                android:ems="10"
+                android:textSize="16sp"
+                android:hint="@string/reason"
+                android:inputType="text"
+                android:textColor="@color/offWhite"
+                android:textColorHint="@color/offWhite_light_alpha"
+                app:layout_constraintEnd_toEndOf="@+id/iv_clear"
+                app:layout_constraintStart_toStartOf="@+id/iv_add_time_manual"
+                app:layout_constraintTop_toBottomOf="@+id/iv_add_time_manual" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <!--    <View-->
+    <!--        android:id="@+id/view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="1dp"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:alpha="0.1"-->
+    <!--        android:background="@color/offWhite"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/et_reason" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

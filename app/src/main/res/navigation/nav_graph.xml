@@ -7,24 +7,27 @@
 
     <fragment
         android:id="@+id/limestoneFragment"
-        android:name="com.example.machines.LimestoneFragment"
+        android:name="com.example.machines.ui.details.LimestoneFragment"
         android:label="fragment_limestone"
         tools:layout="@layout/fragment_limestone" >
     </fragment>
 
     <fragment
         android:id="@+id/clayCrusherFragment"
-        android:name="com.example.machines.ClayCrusherFragment"
+        android:name="com.example.machines.ui.details.ClayCrusherFragment"
         android:label="fragment_clay_crusher"
         tools:layout="@layout/fragment_clay_crusher" />
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.machines.HomeFragment"
+        android:name="com.example.machines.ui.main.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_limestoneFragment"
             app:destination="@id/limestoneFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_clayCrusherFragment"
+            app:destination="@id/clayCrusherFragment" />
     </fragment>
 </navigation>

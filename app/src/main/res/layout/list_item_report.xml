@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:background="@color/colorPrimaryDark"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tv_start_time_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="10:00"
+        android:textColor="@color/offWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_end_time_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="15:30"
+        android:textColor="@color/offWhite"
+        app:layout_constraintStart_toEndOf="@+id/tv_start_time_report"
+        app:layout_constraintTop_toTopOf="@+id/tv_start_time_report" />
+
+
+    <TextView
+        android:id="@+id/tv_rh_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="3:20"
+        android:textColor="@color/offWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_end_time_report" />
+
+
+    <TextView
+        android:id="@+id/tv_reason_report"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAlignment="center"
+        android:layout_marginEnd="16dp"
+        android:text=""
+        android:textColor="@color/offWhite"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rh_report"
+        app:layout_constraintStart_toEndOf="@+id/tv_end_time_report"
+        app:layout_constraintTop_toTopOf="@+id/tv_end_time_report" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

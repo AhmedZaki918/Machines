@@ -6,6 +6,10 @@
 
     <color name="colorPrimaryDark">#011018</color>
     <color name="offWhite">#BDBDBD</color>
+    <color name="offWhite_light_alpha">#B3BDBDBD</color>
+    <color name="blue">#2196F3</color>
+    <color name="red">#E91E63</color>
+    <color name="yellow">#FFC107</color>
 
 
 </resources>

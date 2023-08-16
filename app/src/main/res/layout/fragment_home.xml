@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".ui.main.HomeFragment">
 
     <include
         android:id="@+id/header"
@@ -92,5 +92,145 @@
         app:layout_constraintEnd_toEndOf="@+id/cv_raw_mill"
         app:layout_constraintStart_toStartOf="@+id/cv_raw_mill"
         app:layout_constraintTop_toBottomOf="@+id/cv_raw_mill" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_cement_mill_1"
+        style="@style/cardView"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_limestone_crusher">
+
+        <ImageView
+            android:id="@+id/iv_cement_mill_1"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_cement_mill_1"
+        style="@style/machine_name"
+        android:text="@string/cement_mill_1"
+        app:layout_constraintEnd_toEndOf="@+id/cv_cement_mill_1"
+        app:layout_constraintStart_toStartOf="@+id/cv_cement_mill_1"
+        app:layout_constraintTop_toBottomOf="@+id/cv_cement_mill_1" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_kiln"
+        style="@style/cardView"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/cv_cement_mill_1"
+        app:layout_constraintTop_toTopOf="@+id/cv_cement_mill_1">
+
+        <ImageView
+            android:id="@+id/iv_kiln"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_kiln"
+        style="@style/machine_name"
+        android:text="@string/kiln"
+        app:layout_constraintEnd_toEndOf="@+id/cv_kiln"
+        app:layout_constraintStart_toStartOf="@+id/cv_kiln"
+        app:layout_constraintTop_toBottomOf="@+id/cv_kiln" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_cement_mill_2"
+        style="@style/cardView"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_cement_mill_1"
+        app:layout_constraintTop_toTopOf="@+id/cv_cement_mill_1">
+
+        <ImageView
+            android:id="@+id/iv_cement_mill_2"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_cement_mill_2"
+        style="@style/machine_name"
+        android:text="@string/cement_mill_2"
+        app:layout_constraintEnd_toEndOf="@+id/cv_cement_mill_2"
+        app:layout_constraintStart_toStartOf="@+id/cv_cement_mill_2"
+        app:layout_constraintTop_toBottomOf="@+id/cv_cement_mill_2" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_cement_mill_3"
+        style="@style/cardView"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/cv_all_machines"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cement_mill_1">
+
+        <ImageView
+            android:id="@+id/iv_cement_mill_3"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:id="@+id/tv_cement_mill_3"
+        style="@style/machine_name"
+        android:text="@string/cement_mill_3"
+        app:layout_constraintEnd_toEndOf="@+id/cv_cement_mill_3"
+        app:layout_constraintStart_toStartOf="@+id/cv_cement_mill_3"
+        app:layout_constraintTop_toBottomOf="@+id/cv_cement_mill_3" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_all_machines"
+        style="@style/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cv_cement_mill_3">
+
+        <ImageView
+            android:id="@+id/iv_all_machines"
+            style="@style/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/outline_device_hub"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_all_machines"
+        style="@style/machine_name"
+        android:text="@string/all"
+        app:layout_constraintEnd_toEndOf="@+id/cv_all_machines"
+        app:layout_constraintStart_toStartOf="@+id/cv_all_machines"
+        app:layout_constraintTop_toBottomOf="@+id/cv_all_machines" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

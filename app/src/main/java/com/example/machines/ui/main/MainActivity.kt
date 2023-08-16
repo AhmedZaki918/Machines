@@ -1,4 +1,4 @@
-package com.example.machines
+package com.example.machines.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

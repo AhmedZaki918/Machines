@@ -4,5 +4,17 @@
     <string name="clay_crusher">Clay Crusher</string>
     <string name="limestone_crusher">Limestone Crusher</string>
     <string name="raw_mill">Raw Mill</string>
+    <string name="cement_mill_1">Cement Mill 1</string>
+    <string name="cement_mill_2">Cement Mill 2</string>
+    <string name="cement_mill_3">Cement Mill 3</string>
+    <string name="kiln">Kiln</string>
+    <string name="all">Machines</string>
+    <string name="add_time_cd">Add time</string>
+    <string name="add_time_manual">add time</string>
+    <string name="add_new_item_cd">Add new item</string>
+    <string name="end">End</string>
+    <string name="r_h">R.H</string>
+    <string name="start">Start</string>
+    <string name="reason">Reason</string>
 
 </resources>

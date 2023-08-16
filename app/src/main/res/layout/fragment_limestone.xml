@@ -1,21 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:fillViewport="true"
+    android:paddingBottom="16dp"
     android:layout_height="match_parent"
-    tools:context=".LimestoneFragment">
+    tools:context=".ui.details.LimestoneFragment">
 
 
-    <Button
-        android:id="@+id/btnGo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginTop="300dp"
-        android:text="Go"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/blue"
+            android:contentDescription="@string/add_new_item_cd"
+            android:src="@drawable/baseline_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/header" />
+
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:text=""
+            android:textAlignment="textEnd"
+            android:textColor="@color/offWhite_light_alpha"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.29" />
+
+
+        <TextView
+            android:id="@+id/tv_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:textAlignment="center"
+            android:textColor="@color/offWhite_light_alpha"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_add"
+            app:layout_constraintTop_toTopOf="@+id/tv_add"
+            app:layout_constraintWidth_percent="0.2" />
+
+
+        <TextView
+            android:id="@+id/tv_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/end"
+            android:textColor="@color/offWhite_light_alpha"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_start"
+            app:layout_constraintTop_toTopOf="@+id/tv_start"
+            app:layout_constraintWidth_percent="0.2" />
+
+
+        <TextView
+            android:id="@+id/tv_rh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/r_h"
+            android:textColor="@color/offWhite_light_alpha"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_end"
+            app:layout_constraintTop_toTopOf="@+id/tv_end"
+            app:layout_constraintWidth_percent="0.29" />
+
+        <include
+            android:id="@+id/details"
+            layout="@layout/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_add" />
+
+
+        <include
+            android:id="@+id/details_2"
+            layout="@layout/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details" />
+
+
+        <include
+            android:id="@+id/details_3"
+            layout="@layout/details"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_2" />
+
+        <include
+            android:id="@+id/details_4"
+            android:visibility="invisible"
+            layout="@layout/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_3" />
+
+        <include
+            android:id="@+id/details_5"
+            layout="@layout/details"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_4" />
+
+        <include
+            android:id="@+id/details_6"
+            layout="@layout/details"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_5" />
+
+
+        <include
+            android:id="@+id/details_7"
+            layout="@layout/details"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_6" />
+
+
+        <include
+            android:id="@+id/details_8"
+            layout="@layout/details"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_7" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</ScrollView>

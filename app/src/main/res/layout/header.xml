@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimaryDark"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
 
     <TextView
@@ -13,24 +13,47 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
+        android:text="Screen Name"
         android:textColor="@color/offWhite"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Home" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
+    <TextView
+        android:id="@+id/tv_rh_total_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="R.H - total"
+        android:textColor="@color/offWhite"
+        app:layout_constraintEnd_toEndOf="@+id/tv_screen_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_screen_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_screen_name" />
+
+
+    <TextView
+        android:id="@+id/tv_rh_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="00:00:00"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="@+id/tv_rh_total_label"
+        app:layout_constraintStart_toStartOf="@+id/tv_rh_total_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rh_total_label" />
 
     <ImageView
         android:id="@+id/iv_go_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:contentDescription="@string/go_back_content_desc"
         app:layout_constraintBottom_toBottomOf="@+id/tv_screen_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_screen_name"
-        app:srcCompat="@drawable/outline_arrow_back"
-        android:contentDescription="@string/go_back_content_desc" />
+        app:srcCompat="@drawable/outline_arrow_back" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
