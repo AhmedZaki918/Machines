@@ -3,16 +3,12 @@ package com.example.machines.ui.details
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.machines.databinding.DetailsBinding
+import androidx.navigation.fragment.findNavController
+import com.example.machines.R
 import com.example.machines.databinding.FragmentLimestoneBinding
-import com.example.machines.utils.Constants.RESET
-import com.example.machines.utils.Constants.R_H_RESET
 import com.example.machines.utils.click
-import com.example.machines.utils.currentTime
-import com.example.machines.utils.differenceBetweenTime
 import com.example.machines.utils.drawScreenHeader
 
 
@@ -21,6 +17,7 @@ class LimestoneFragment : Fragment() {
     private lateinit var binding: FragmentLimestoneBinding
     private var counter = 2
     private var startTime = ""
+    private var updateMode = false
 
 
     override fun onCreateView(
@@ -28,7 +25,7 @@ class LimestoneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLimestoneBinding.inflate(inflater, container, false)
-        binding.header.drawScreenHeader("Limestone Crusher", this)
+        binding.header.drawScreenHeader(getString(R.string.limestone_crusher), this)
         setClickListeners()
         return binding.root
     }
@@ -36,102 +33,74 @@ class LimestoneFragment : Fragment() {
 
     private fun setClickListeners() {
         binding.apply {
-            updateItem(details)
-            updateItem(details2)
-            updateItem(details3)
-            updateItem(details4)
-            updateItem(details5)
-            updateItem(details6)
-            updateItem(details7)
-            updateItem(details8)
-            fab.click { addNewItem() }
-        }
-    }
-
-
-    private fun updateItem(layout: DetailsBinding) {
-        layout.apply {
-            var plusCounter = 1
-
-            ivAddTimeAuto.click {
-                if (plusCounter == 1) {
-                    startTime = currentTime()
-
-                    tvStartTime.text = "------->"
-                    plusCounter++
-                } else {
-                    plusCounter = 1
-                    tvEndTime.text = currentTime()
-
-                    val different = differenceBetweenTime(startTime, currentTime())
-                    tvRh.text = different.hours + ":" + different.minutes + ":" + different.seconds
-                }
-            }
-
-            ivClear.click {
-                plusCounter = 1
-                tvStartTime.text = RESET
-                tvEndTime.text = RESET
-                tvRh.text = R_H_RESET
+            //updateItem(details)
+            fab.click {
+                findNavController().navigate(R.id.action_limestoneFragment_to_addFragment)
             }
         }
     }
 
 
-    private fun readSavedItemsViaAdd(counter: Int) {
-        binding.apply {
-            when (counter) {
-                3 -> {
-                    details3.root.visibility = VISIBLE
-                }
+//    private fun updateItem(layout: DetailsBinding, updateMode: Boolean = false) {
+//        layout.apply {
+//            var plusCounter = 1
+//
+//            ivAddTimeAuto.click {
+//                if (plusCounter == 1) {
+//                    addStartTime(layout,updateMode)
+//                    plusCounter++
+//                } else {
+//                    plusCounter = 1
+//                    addStopTime(layout,updateMode)
+//                }
+//            }
+//            ivClear.click {
+//                plusCounter = 1
+//                clear(layout)
+//            }
+//        }
+//    }
 
-                4 -> {
-                    details3.root.visibility = VISIBLE
-                    details4.root.visibility = VISIBLE
-                }
 
-                5 -> {
-                    details3.root.visibility = VISIBLE
-                    details4.root.visibility = VISIBLE
-                    details5.root.visibility = VISIBLE
-                }
-            }
-        }
-    }
+//    private fun addStartTime(
+//        layout: DetailsBinding,
+//        updateMode: Boolean
+//    ) {
+//        // Update ui
+//        startTime = currentTime()
+//        layout.tvStartTime.text = startTime
+//        val reasonInput = layout.etReason.text.toString().trim()
+//
+//        if (updateMode) {
+//            // update database
+//        } else {
+//            // Add new item to database
+//            val runningTime = RunningTime(startTime, "00:00")
+//            val reason = Reason(reasonInput)
+//            val machine = MachineMain(1,getString(R.string.limestone_crusher), runningTime, reason)
+//            machineMains.add(machine)
+//        }
+//    }
 
-    private fun addNewItem() {
-        binding.apply {
-            when (counter) {
-                2 -> {
-                    counter++
-                    details3.root.visibility = VISIBLE
-                }
 
-                3 -> {
-                    counter++
-                    details4.root.visibility = VISIBLE
-                }
+//    private fun addStopTime(
+//        layout: DetailsBinding,
+//        updateMode: Boolean
+//    ) {
+//        layout.tvEndTime.text = currentTime()
+//        val different = differenceBetweenTime(startTime, currentTime())
+//        layout.tvRh.text = different.hours + ":" + different.minutes + ":" + different.seconds
+//
+//        // Update existing item to database
+//
+//    }
 
-                4 -> {
-                    counter++
-                    details5.root.visibility = VISIBLE
-                }
 
-                5 -> {
-                    counter++
-                    details6.root.visibility = VISIBLE
-                }
-
-                6 -> {
-                    counter++
-                    details7.root.visibility = VISIBLE
-                }
-
-                7 -> {
-                    counter++
-                    details8.root.visibility = VISIBLE
-                }
-            }
-        }
-    }
+//    private fun clear(layout: DetailsBinding) {
+//        layout.apply {
+//            tvStartTime.text = RESET
+//            tvEndTime.text = RESET
+//            tvRh.text = R_H_RESET
+//        }
+//    }
 }

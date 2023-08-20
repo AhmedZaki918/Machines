@@ -43,27 +43,17 @@
                 app:srcCompat="@drawable/outline_edit" />
 
 
-            <ImageButton
-                android:id="@+id/iv_add_time_auto"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:contentDescription="@string/add_time_cd"
-                app:layout_constraintStart_toEndOf="@+id/iv_add_time_manual"
-                app:layout_constraintTop_toTopOf="@+id/iv_add_time_manual"
-                app:srcCompat="@drawable/outline_add_box" />
-
             <TextView
                 android:id="@+id/tv_start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
                 android:text="00:00"
                 android:textColor="@color/offWhite_light_alpha"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_add_time_auto"
-                app:layout_constraintStart_toEndOf="@+id/iv_add_time_auto"
-                app:layout_constraintTop_toTopOf="@+id/iv_add_time_auto"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_end_time"
+                app:layout_constraintEnd_toStartOf="@+id/tv_end_time"
+                app:layout_constraintTop_toTopOf="@+id/tv_end_time"
                 tools:ignore="HardcodedText" />
 
 
@@ -71,13 +61,13 @@
                 android:id="@+id/tv_end_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
                 android:text="00:00"
                 android:textColor="@color/offWhite_light_alpha"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_start_time"
-                app:layout_constraintStart_toEndOf="@+id/tv_start_time"
-                app:layout_constraintTop_toTopOf="@+id/tv_start_time"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_rh"
+                app:layout_constraintEnd_toStartOf="@+id/tv_rh"
+                app:layout_constraintTop_toTopOf="@+id/tv_rh"
                 tools:ignore="HardcodedText" />
 
 
@@ -88,9 +78,9 @@
                 android:text="00:00:0"
                 android:textColor="@color/offWhite_light_alpha"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_end_time"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_clear"
                 app:layout_constraintEnd_toStartOf="@+id/iv_clear"
-                app:layout_constraintTop_toTopOf="@+id/tv_end_time"
+                app:layout_constraintTop_toTopOf="@+id/iv_clear"
                 tools:ignore="HardcodedText" />
 
 
@@ -101,9 +91,8 @@
                 android:layout_marginEnd="16dp"
                 android:background="@null"
                 android:contentDescription="@string/add_time_cd"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_rh"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_rh"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/outline_clear" />
 
             <EditText

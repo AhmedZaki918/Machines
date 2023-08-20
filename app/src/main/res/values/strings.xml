@@ -16,5 +16,8 @@
     <string name="r_h">R.H</string>
     <string name="start">Start</string>
     <string name="reason">Reason</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add">Add Time</string>
 
 </resources>

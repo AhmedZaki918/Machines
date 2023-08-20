@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:fillViewport="true"
     android:paddingBottom="16dp"
-    android:layout_height="match_parent"
     tools:context=".ui.details.LimestoneFragment">
 
 
@@ -84,93 +84,22 @@
             app:layout_constraintTop_toTopOf="@+id/tv_end"
             app:layout_constraintWidth_percent="0.29" />
 
-        <include
-            android:id="@+id/details"
-            layout="@layout/details"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_machine_details"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_add" />
-
-
-        <include
-            android:id="@+id/details_2"
-            layout="@layout/details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details" />
-
-
-        <include
-            android:id="@+id/details_3"
-            layout="@layout/details"
-            android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_2" />
-
-        <include
-            android:id="@+id/details_4"
-            android:visibility="invisible"
-            layout="@layout/details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_3" />
-
-        <include
-            android:id="@+id/details_5"
-            layout="@layout/details"
-            android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_4" />
-
-        <include
-            android:id="@+id/details_6"
-            layout="@layout/details"
-            android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_5" />
-
-
-        <include
-            android:id="@+id/details_7"
-            layout="@layout/details"
-            android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_6" />
-
-
-        <include
-            android:id="@+id/details_8"
-            layout="@layout/details"
-            android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_7" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_start"
+            tools:itemCount="5"
+            tools:listitem="@layout/details" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </ScrollView>

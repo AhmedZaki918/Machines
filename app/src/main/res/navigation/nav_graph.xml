@@ -10,6 +10,9 @@
         android:name="com.example.machines.ui.details.LimestoneFragment"
         android:label="fragment_limestone"
         tools:layout="@layout/fragment_limestone" >
+        <action
+            android:id="@+id/action_limestoneFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
 
     <fragment
@@ -30,4 +33,9 @@
             android:id="@+id/action_homeFragment_to_clayCrusherFragment"
             app:destination="@id/clayCrusherFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.machines.ui.time.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" />
 </navigation>
