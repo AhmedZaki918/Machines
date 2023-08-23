@@ -11,6 +11,7 @@ import com.example.machines.R
 import com.example.machines.databinding.FragmentHomeBinding
 import com.example.machines.utils.click
 import com.example.machines.utils.drawScreenHeader
+import com.example.machines.utils.fakeData
 
 
 class HomeFragment : Fragment() {
@@ -22,6 +23,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
 
         binding.header.apply {
             ivGoBack.visibility = INVISIBLE

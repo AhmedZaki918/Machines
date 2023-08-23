@@ -5,9 +5,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.machines.data.model.MachineMain
 import com.example.machines.databinding.HeaderBinding
 import com.example.machines.ui.DifferentInTime
 import com.example.machines.utils.Constants.TIME_FORMAT
+import com.example.machines.utils.Constants.machineMains
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -56,4 +58,23 @@ fun differenceBetweenTime(time1: String, time2: String): DifferentInTime {
 
 fun currentTime(): String {
     return SimpleDateFormat(TIME_FORMAT, Locale.ENGLISH).format(Date())
+}
+
+
+fun fakeData(){
+    machineMains.add(
+        MachineMain(1,"","10:00","14:30",false,"","4:30")
+    )
+    machineMains.add(
+        MachineMain(2,"","15:00","17:00",false,"over heat","2:00")
+    )
+    machineMains.add(
+        MachineMain(3,"","----->","20:30",true,"","5:30")
+    )
+    machineMains.add(
+        MachineMain(4,"","21:00","23:00",false,"","2:00")
+    )
+    machineMains.add(
+        MachineMain(5,"","16:00","17:00",false,"broken in machine","3:20")
+    )
 }

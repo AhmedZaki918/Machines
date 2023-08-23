@@ -45,44 +45,45 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.29" />
+            app:layout_constraintWidth_percent="0.30" />
 
 
         <TextView
             android:id="@+id/tv_start"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="@string/start"
             android:textAlignment="center"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/tv_add"
-            app:layout_constraintTop_toTopOf="@+id/tv_add"
-            app:layout_constraintWidth_percent="0.2" />
+            app:layout_constraintTop_toTopOf="@+id/tv_add" />
 
 
         <TextView
             android:id="@+id/tv_end"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:text="@string/end"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/tv_start"
-            app:layout_constraintTop_toTopOf="@+id/tv_start"
-            app:layout_constraintWidth_percent="0.2" />
+            app:layout_constraintTop_toTopOf="@+id/tv_start" />
 
 
         <TextView
             android:id="@+id/tv_rh"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
             android:text="@string/r_h"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_end"
-            app:layout_constraintTop_toTopOf="@+id/tv_end"
-            app:layout_constraintWidth_percent="0.29" />
+            app:layout_constraintTop_toTopOf="@+id/tv_end" />
 
 
         <androidx.recyclerview.widget.RecyclerView
