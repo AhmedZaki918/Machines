@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryDark"
     android:fillViewport="true"
     android:paddingBottom="16dp"
-    tools:context=".ui.details.LimestoneFragment">
+    tools:context=".ui.limestone.LimestoneFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/start"
+            android:visibility="invisible"
             android:textAlignment="center"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
@@ -66,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:visibility="invisible"
             android:text="@string/end"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
@@ -77,6 +79,7 @@
             android:id="@+id/tv_rh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:layout_marginEnd="32dp"
             android:text="@string/r_h"
             android:textColor="@color/offWhite_light_alpha"
@@ -94,10 +97,38 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_start"
+            app:layout_constraintVertical_bias="0.0"
             tools:itemCount="5"
             tools:listitem="@layout/details" />
+
+        <ImageView
+            android:id="@+id/iv_no_data"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:alpha="0.7"
+            android:visibility="invisible"
+            android:src="@drawable/baseline_add_to_queue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:alpha="0.7"
+            android:visibility="invisible"
+            android:textColor="@color/offWhite"
+            android:text="@string/no_data"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_no_data" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

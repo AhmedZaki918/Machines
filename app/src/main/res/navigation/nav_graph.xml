@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/limestoneFragment"
-        android:name="com.example.machines.ui.details.LimestoneFragment"
+        android:name="com.example.machines.ui.limestone.LimestoneFragment"
         android:label="fragment_limestone"
         tools:layout="@layout/fragment_limestone" >
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/clayCrusherFragment"
-        android:name="com.example.machines.ui.details.ClayCrusherFragment"
+        android:name="com.example.machines.ui.ClayCrusherFragment"
         android:label="fragment_clay_crusher"
         tools:layout="@layout/fragment_clay_crusher" />
 

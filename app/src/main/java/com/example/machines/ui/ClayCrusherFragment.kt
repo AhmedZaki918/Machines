@@ -1,4 +1,4 @@
-package com.example.machines.ui.details
+package com.example.machines.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.machines.databinding.FragmentClayCrusherBinding
-import com.example.machines.ui.adapter.IndividualMachineAdapter
-import com.example.machines.utils.Constants.machineMains
 import com.example.machines.utils.drawScreenHeader
 
 
