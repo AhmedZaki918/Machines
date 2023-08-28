@@ -33,7 +33,13 @@ class HomeFragment : Fragment() {
         binding.header.apply {
             ivGoBack.visibility = INVISIBLE
             tvRhTotalLabel.visibility = INVISIBLE
-            tvRhTotal.visibility = INVISIBLE
+            tvRhHours.visibility = INVISIBLE
+            tvRhMinutes.visibility = INVISIBLE
+            tvSeparator.visibility = INVISIBLE
+            tvRhDiffLabel.visibility = INVISIBLE
+            tvRhHoursDiff.visibility = INVISIBLE
+            tvRhMinutesDiff.visibility = INVISIBLE
+            tvSeparatorDiff.visibility = INVISIBLE
         }
 
         binding.apply {

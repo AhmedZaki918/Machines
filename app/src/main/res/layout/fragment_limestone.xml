@@ -45,19 +45,19 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.30" />
+            app:layout_constraintWidth_percent="0.20" />
 
 
         <TextView
             android:id="@+id/tv_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:text="@string/start"
-            android:visibility="invisible"
             android:textAlignment="center"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintStart_toEndOf="@+id/tv_add"
             app:layout_constraintTop_toTopOf="@+id/tv_add" />
 
@@ -66,11 +66,11 @@
             android:id="@+id/tv_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:visibility="invisible"
+            android:layout_marginStart="24dp"
             android:text="@string/end"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintStart_toEndOf="@+id/tv_start"
             app:layout_constraintTop_toTopOf="@+id/tv_start" />
 
@@ -79,11 +79,10 @@
             android:id="@+id/tv_rh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:layout_marginEnd="32dp"
             android:text="@string/r_h"
             android:textColor="@color/offWhite_light_alpha"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_end"
             app:layout_constraintTop_toTopOf="@+id/tv_end" />

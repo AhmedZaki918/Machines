@@ -9,7 +9,7 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_show_clients"
+        android:id="@+id/cv_machine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -31,29 +31,29 @@
             android:paddingBottom="16dp">
 
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/iv_add_stop_time"
-                android:layout_width="90dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
                 android:background="@null"
-                android:contentDescription="@string/add_time_manual"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/outline_edit" />
+                app:srcCompat="@drawable/baseline_more_time" />
 
 
             <TextView
                 android:id="@+id/tv_start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="32dp"
                 android:text="00:00"
                 android:textColor="@color/offWhite_light_alpha"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_end_time"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_add_stop_time"
                 app:layout_constraintStart_toEndOf="@+id/iv_add_stop_time"
-                app:layout_constraintTop_toTopOf="@+id/tv_end_time"
+                app:layout_constraintTop_toTopOf="@+id/iv_add_stop_time"
                 tools:ignore="HardcodedText" />
 
 
@@ -65,9 +65,9 @@
                 android:text="00:00"
                 android:textColor="@color/offWhite_light_alpha"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_rh"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_start_time"
                 app:layout_constraintStart_toEndOf="@+id/tv_start_time"
-                app:layout_constraintTop_toTopOf="@+id/tv_rh"
+                app:layout_constraintTop_toTopOf="@+id/tv_start_time"
                 tools:ignore="HardcodedText" />
 
 
@@ -79,9 +79,9 @@
                 android:text="0:00"
                 android:textColor="@color/offWhite_light_alpha"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_clear"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_end_time"
                 app:layout_constraintEnd_toStartOf="@+id/iv_clear"
-                app:layout_constraintTop_toTopOf="@+id/iv_clear"
+                app:layout_constraintTop_toTopOf="@+id/tv_end_time"
                 tools:ignore="HardcodedText" />
 
 
@@ -92,30 +92,30 @@
                 android:layout_marginEnd="8dp"
                 android:background="@null"
                 android:contentDescription="@string/add_time_cd"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_rh"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_rh"
                 app:srcCompat="@drawable/outline_clear" />
 
             <TextView
                 android:id="@+id/tv_reason"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="over heat"
-                android:textColor="@color/offWhite_light_alpha"
+                android:layout_marginStart="24dp"
+                android:textColor="@color/blue"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/iv_add_stop_time"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toTopOf="@+id/textView6"
+                tools:text="over heat" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/reason"
                 android:textColor="@color/offWhite_light_alpha"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/iv_add_stop_time"
                 app:layout_constraintStart_toStartOf="@+id/iv_add_stop_time"
                 app:layout_constraintTop_toBottomOf="@+id/iv_add_stop_time" />
 

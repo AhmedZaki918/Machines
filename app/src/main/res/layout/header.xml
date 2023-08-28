@@ -25,25 +25,94 @@
         android:id="@+id/tv_rh_total_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="R.H - total"
+        android:text="R.H - actual"
         android:textColor="@color/offWhite"
-        app:layout_constraintEnd_toEndOf="@+id/tv_screen_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_screen_name"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_screen_name" />
 
 
     <TextView
-        android:id="@+id/tv_rh_total"
+        android:id="@+id/tv_rh_diff_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="R.H - diff"
+        android:textColor="@color/offWhite"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rh_hours_diff"
+        app:layout_constraintTop_toTopOf="@+id/tv_rh_minutes" />
+
+    <TextView
+        android:id="@+id/tv_separator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="00:00:00"
+        android:text=":"
+        android:textColor="@color/offWhite_light_alpha"
+        app:layout_constraintStart_toEndOf="@+id/tv_rh_hours"
+        app:layout_constraintTop_toTopOf="@+id/tv_rh_hours"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/tv_separator_diff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=":"
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/tv_rh_total_label"
-        app:layout_constraintStart_toStartOf="@+id/tv_rh_total_label"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rh_total_label" />
+        app:layout_constraintEnd_toStartOf="@+id/tv_rh_minutes_diff"
+        app:layout_constraintTop_toTopOf="@+id/tv_rh_hours_diff"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_rh_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:textColor="@color/offWhite_light_alpha"
+        app:layout_constraintStart_toEndOf="@+id/tv_rh_total_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_rh_total_label"
+        tools:ignore="HardcodedText"
+        tools:text="9" />
+
+    <TextView
+        android:id="@+id/tv_rh_hours_diff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toStartOf="@+id/tv_separator_diff"
+        app:layout_constraintTop_toTopOf="@+id/tv_rh_diff_label"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_rh_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/offWhite_light_alpha"
+        app:layout_constraintStart_toEndOf="@+id/tv_separator"
+        app:layout_constraintTop_toTopOf="@+id/tv_separator"
+        tools:ignore="HardcodedText"
+        tools:text="45" />
+
+    <TextView
+        android:id="@+id/tv_rh_minutes_diff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:gravity="center"
+        android:text="00"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_separator_diff"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/iv_go_back"

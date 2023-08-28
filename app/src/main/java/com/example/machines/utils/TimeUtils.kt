@@ -5,10 +5,11 @@ import androidx.annotation.RequiresApi
 import com.example.machines.data.local.Constants
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.DOT
+import com.example.machines.data.local.Constants.MINUTES_RESET
 import com.example.machines.data.local.Constants.TWENTY_FOUR
 import com.example.machines.data.local.Format
 import com.example.machines.data.local.Number
-import com.example.machines.ui.TimeDifferent
+import com.example.machines.ui.Time
 import java.text.SimpleDateFormat
 import java.time.Duration
 import java.time.LocalDateTime
@@ -20,9 +21,9 @@ import kotlin.math.roundToInt
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun differentInTwoTimes(startTime: String, endTime: String): String {
-    val rh: TimeDifferent = if (isFirstTimeBigger(startTime, endTime)) {
+    val rh: Time = if (isFirstTimeBigger(startTime, endTime)) {
         diffInTwoTimesInTwoDays(startTime, endTime)
-    } else diffInTwoTimesInDay(differentInMinutes(startTime, endTime))
+    } else convertMinutesToTime(differentInMinutes(startTime, endTime))
     return formatTime(rh.hours) + COLUMN + formatTime(rh.minutes)
 }
 
@@ -35,15 +36,15 @@ fun differentInMinutes(time1: String, time2: String): Long {
 }
 
 
-fun diffInTwoTimesInDay(durationInMinutes: Long): TimeDifferent {
+fun convertMinutesToTime(durationInMinutes: Long): Time {
     val hours: String
     val minutes: String
 
     return if (durationInMinutes.mod(60) == 0) {
         // Whole number
         hours = (durationInMinutes / 60).toString()
-        minutes = Constants.MINUTES_RESET
-        TimeDifferent(hours, minutes)
+        minutes = MINUTES_RESET
+        Time(hours, minutes)
 
     } else {
         // Decimal number
@@ -52,7 +53,7 @@ fun diffInTwoTimesInDay(durationInMinutes: Long): TimeDifferent {
         minutes = result.substring(result.indexOf(DOT), result.lastIndex + 1)
 
         val convertMinutes = (minutes.toFloat() * 60f).roundToInt()
-        TimeDifferent(hours, convertMinutes.toString())
+        Time(hours, convertMinutes.toString())
     }
 }
 
@@ -65,11 +66,11 @@ fun isFirstTimeBigger(time1: String, time2: String): Boolean {
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun diffInTwoTimesInTwoDays(time: String, time2: String): TimeDifferent {
+fun diffInTwoTimesInTwoDays(time: String, time2: String): Time {
     val diffInMinutesUntilEndOfDay = differentInMinutes(time, TWENTY_FOUR)
     val endTimeInMinutes = convertTimeToMinutes(time2)
     val totalMinutes = diffInMinutesUntilEndOfDay + endTimeInMinutes
-    return diffInTwoTimesInDay(totalMinutes)
+    return convertMinutesToTime(totalMinutes)
 }
 
 fun convertTimeToMinutes(time: String): Int {

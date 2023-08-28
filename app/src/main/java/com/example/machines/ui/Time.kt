@@ -1,6 +1,6 @@
 package com.example.machines.ui
 
-data class TimeDifferent(
+data class Time(
     val hours: String,
     val minutes: String
 )

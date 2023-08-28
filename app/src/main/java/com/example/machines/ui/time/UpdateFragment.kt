@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.machines.R
-import com.example.machines.data.local.Constants.DEFAULT_VALUE
+import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.SEVEN_AM
 import com.example.machines.data.local.Constants.machine
@@ -19,7 +19,6 @@ import com.example.machines.databinding.FragmentUpdateBinding
 import com.example.machines.ui.limestone.LimestoneViewModel
 import com.example.machines.utils.MachineUtils.changeThumbTint
 import com.example.machines.utils.click
-import com.example.machines.utils.currentTime
 import com.example.machines.utils.differentInTwoTimes
 import com.example.machines.utils.drawScreenHeader
 import com.example.machines.utils.toast
@@ -31,7 +30,6 @@ class UpdateFragment : Fragment() {
 
     private lateinit var binding: FragmentUpdateBinding
     private lateinit var viewModel: LimestoneViewModel
-    private var counter = 1
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -52,9 +50,15 @@ class UpdateFragment : Fragment() {
         binding.apply {
             header.apply {
                 tvRhTotalLabel.visibility = View.INVISIBLE
-                tvRhTotal.visibility = View.INVISIBLE
+                tvRhHours.visibility = View.INVISIBLE
+                tvRhMinutes.visibility = View.INVISIBLE
+                tvSeparator.visibility = View.INVISIBLE
+                tvRhDiffLabel.visibility = View.INVISIBLE
+                tvRhHoursDiff.visibility = View.INVISIBLE
+                tvRhMinutesDiff.visibility = View.INVISIBLE
+                tvSeparatorDiff.visibility = View.INVISIBLE
             }
-            btnSet.click { setTime() }
+            //btnSet.click { setTime() }
             switchShow.click {
                 if (switchShow.isChecked) requireContext().changeThumbTint(R.color.blue, switchShow)
                 else requireContext().changeThumbTint(R.color.offWhite, switchShow)
@@ -66,31 +70,28 @@ class UpdateFragment : Fragment() {
     }
 
 
-    private fun setTime() {
-        binding.apply {
-            if (counter == 1) {
-                tvStopTime.text = currentTime()
-                btnSet.text = getString(R.string.undo)
-                counter++
-            } else {
-                tvStopTime.text = DEFAULT_VALUE
-                btnSet.text = getString(R.string.set)
-                counter--
-            }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun saveTime() {
+        val hours = binding.etHours.text.toString().trim()
+        val minutes = binding.etMinutes.text.toString().trim()
+        val runningStatus = binding.switchShow.isChecked
+
+        if (isTimeEmpty() && !runningStatus) {
+            requireContext().toast(R.string.one_field_is_required)
+        } else if (!isTimeEmpty() && runningStatus) {
+            requireContext().toast(R.string.one_field_is_required)
+        } else {
+            val stopTime = hours + COLUMN + minutes
+            if (runningStatus) updateItem(RUNNING)
+            else updateItem(stopTime)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun saveTime() {
-        val stopTime = binding.tvStopTime.text
-        val runningStatus = binding.switchShow.isChecked
 
-        if (stopTime == DEFAULT_VALUE && !runningStatus) {
-            requireContext().toast(getString(R.string.one_field_is_required))
-        } else {
-            if (runningStatus) updateItem(RUNNING)
-            else updateItem(stopTime.toString())
-        }
+    private fun isTimeEmpty(): Boolean {
+        val hours = binding.etHours.text.toString().trim()
+        val minutes = binding.etMinutes.text.toString().trim()
+        return (hours.isEmpty() || minutes.isEmpty())
     }
 
 

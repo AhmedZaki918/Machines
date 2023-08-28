@@ -4,6 +4,7 @@ import com.example.machines.data.model.MachineMain
 
 object Constants {
     const val DEFAULT_VALUE = "00:00"
+    const val DEFAULT_HOUR = "0"
     const val TIME_FORMAT = "H:mm"
     const val R_H_RESET = "00:00"
     const val RUNNING = "------->"

@@ -23,12 +23,14 @@
     <string name="start_time">Start Time</string>
     <string name="stop_time">Stop Time</string>
     <string name="set">Set</string>
-    <string name="_24_hour_time_format">24-hour time format</string>
+    <string name="_24_hour_time_format">24-hour time</string>
     <string name="running_status">Running status</string>
     <string name="last_running_status_from_yesterday">Last running status from yesterday</string>
     <string name="Update">Update</string>
     <string name="undo">Undo</string>
     <string name="one_field_is_required">One field is required</string>
     <string name="no_data">No data has been found yet.</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
 
 </resources>
