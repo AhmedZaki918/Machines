@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -49,16 +50,15 @@ class UpdateFragment : Fragment() {
     private fun setClickListeners() {
         binding.apply {
             header.apply {
-                tvRhTotalLabel.visibility = View.INVISIBLE
-                tvRhHours.visibility = View.INVISIBLE
-                tvRhMinutes.visibility = View.INVISIBLE
-                tvSeparator.visibility = View.INVISIBLE
-                tvRhDiffLabel.visibility = View.INVISIBLE
-                tvRhHoursDiff.visibility = View.INVISIBLE
-                tvRhMinutesDiff.visibility = View.INVISIBLE
-                tvSeparatorDiff.visibility = View.INVISIBLE
+                tvRhTotalLabel.visibility = INVISIBLE
+                tvRhHours.visibility = INVISIBLE
+                tvRhMinutes.visibility = INVISIBLE
+                tvSeparator.visibility = INVISIBLE
+                tvRhDiffLabel.visibility = INVISIBLE
+                tvRhHoursDiff.visibility = INVISIBLE
+                tvRhMinutesDiff.visibility = INVISIBLE
+                tvSeparatorDiff.visibility = INVISIBLE
             }
-            //btnSet.click { setTime() }
             switchShow.click {
                 if (switchShow.isChecked) requireContext().changeThumbTint(R.color.blue, switchShow)
                 else requireContext().changeThumbTint(R.color.offWhite, switchShow)
@@ -102,7 +102,8 @@ class UpdateFragment : Fragment() {
         var endTime = time
 
         if (startTime == RUNNING) startTime = SEVEN_AM
-        else if (endTime == RUNNING) endTime = SEVEN_AM
+        if (endTime == RUNNING) endTime = SEVEN_AM
+
 
         viewModel.updateLimestone(
             MachineMain(

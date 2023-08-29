@@ -6,6 +6,7 @@ import com.example.machines.data.local.Constants
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.DOT
 import com.example.machines.data.local.Constants.MINUTES_RESET
+import com.example.machines.data.local.Constants.SEVEN_AM
 import com.example.machines.data.local.Constants.TWENTY_FOUR
 import com.example.machines.data.local.Format
 import com.example.machines.data.local.Number
@@ -21,10 +22,13 @@ import kotlin.math.roundToInt
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun differentInTwoTimes(startTime: String, endTime: String): String {
-    val rh: Time = if (isFirstTimeBigger(startTime, endTime)) {
-        diffInTwoTimesInTwoDays(startTime, endTime)
-    } else convertMinutesToTime(differentInMinutes(startTime, endTime))
-    return formatTime(rh.hours) + COLUMN + formatTime(rh.minutes)
+    return if (startTime == SEVEN_AM && endTime == SEVEN_AM) TWENTY_FOUR
+    else {
+        val rh: Time = if (isFirstTimeBigger(startTime, endTime)) {
+            diffInTwoTimesInTwoDays(startTime, endTime)
+        } else convertMinutesToTime(differentInMinutes(startTime, endTime))
+        formatTime(rh.hours) + COLUMN + formatTime(rh.minutes)
+    }
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
