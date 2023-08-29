@@ -1,11 +1,13 @@
-package com.example.machines.ui.limestone
+package com.example.machines.ui.claycrusher
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -13,16 +15,16 @@ import com.example.machines.R
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.DEFAULT_HOUR
 import com.example.machines.data.local.Constants.MINUTES_RESET
-import com.example.machines.data.local.Constants.RH_LIMESTONE
-import com.example.machines.data.local.Constants.machine
+import com.example.machines.data.local.Constants.RH_CLAY_CRUSHER
+import com.example.machines.data.local.Constants.clayCrusherMachine
 import com.example.machines.data.local.Constants.machineType
 import com.example.machines.data.local.Type
-import com.example.machines.data.model.LimestoneMachine
-import com.example.machines.databinding.FragmentLimestoneBinding
+import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.databinding.FragmentClayCrusherBinding
 import com.example.machines.databinding.HeaderBinding
 import com.example.machines.ui.Time
-import com.example.machines.ui.adapter.LimestoneAdapter
-import com.example.machines.utils.MachineUtils.updateNotRunningHours
+import com.example.machines.ui.adapter.ClayCrusherAdapter
+import com.example.machines.utils.MachineUtils
 import com.example.machines.utils.OnItemClick
 import com.example.machines.utils.click
 import com.example.machines.utils.convertMinutesToTime
@@ -33,22 +35,23 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class LimestoneFragment : Fragment(), OnItemClick {
+class ClayCrusherFragment : Fragment(), OnItemClick {
 
-    private lateinit var binding: FragmentLimestoneBinding
-    private lateinit var viewModel: LimestoneViewModel
+    private lateinit var binding: FragmentClayCrusherBinding
+    private lateinit var viewModel: ClayCrusherViewModel
     private var rhTotal: Time? = null
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLimestoneBinding.inflate(inflater, container, false)
+        binding = FragmentClayCrusherBinding.inflate(inflater, container, false)
 
-        binding.header.drawScreenHeader(getString(R.string.limestone_crusher), this)
-        viewModel = ViewModelProvider(this)[LimestoneViewModel::class.java]
-        viewModel.getAllLimestoneItems().observe(viewLifecycleOwner) { items ->
+        binding.header.drawScreenHeader(getString(R.string.clay_crusher), this)
+        viewModel = ViewModelProvider(this)[ClayCrusherViewModel::class.java]
+        viewModel.getAllClayCrusherItems().observe(viewLifecycleOwner) { items ->
             switchVisibility(items)
             updateUi(items)
         }
@@ -57,42 +60,25 @@ class LimestoneFragment : Fragment(), OnItemClick {
     }
 
 
-    override fun <T> onClicked(model: T) {
-        model as LimestoneMachine
-        // Save item in Constants Object class
-        model.apply {
-            machine = LimestoneMachine(id, startTime, stopTime, reason, rh)
-        }
-        // Save machine name to determine which one to update before navigate
-        machineType = Type.LIMESTONE.value
-        findNavController()
-            .navigate(R.id.action_limestoneFragment_to_updateFragment)
-    }
-
-
-    override fun <T> onDeleted(model: T) {
-        viewModel.deleteLimestone(model as LimestoneMachine)
-    }
-
-
-    private fun updateUi(items: List<LimestoneMachine>) {
-        binding.rvMachineDetails.adapter = LimestoneAdapter(items, this)
+    private fun updateUi(items: List<ClayCrusherMachine>) {
+        binding.rvClayCrusher.adapter = ClayCrusherAdapter(items, this)
         rhTotal = updateRhTotal(items, binding.header)
         // Save total rh for limestone
-        RH_LIMESTONE = rhTotal!!.hours + COLUMN + formatTime(rhTotal!!.minutes)
+        RH_CLAY_CRUSHER = rhTotal!!.hours + COLUMN + formatTime(rhTotal!!.minutes)
     }
+
 
     private fun setClickListeners() {
         // Save machine name to determine which one to add before navigate
-        machineType = Type.LIMESTONE.value
+        machineType = Type.CLAY_CRUSHER.value
         binding.fab.click {
-            findNavController().navigate(R.id.action_limestoneFragment_to_addFragment)
+            findNavController().navigate(R.id.action_clayCrusherFragment_to_addFragment)
         }
     }
 
 
     private fun updateRhTotal(
-        items: List<LimestoneMachine>,
+        items: List<ClayCrusherMachine>,
         binding: HeaderBinding
     ): Time {
         var totalMinutes = 0
@@ -104,14 +90,14 @@ class LimestoneFragment : Fragment(), OnItemClick {
             tvRhHours.text = totalRh.hours
             tvRhMinutes.text = formatTime(totalRh.minutes)
         }
-        return updateNotRunningHours(totalMinutes, binding)
+        return MachineUtils.updateNotRunningHours(totalMinutes, binding)
     }
 
 
-    private fun switchVisibility(items: List<LimestoneMachine>) {
+    private fun switchVisibility(items: List<ClayCrusherMachine>) {
         binding.apply {
             if (items.isEmpty()) {
-                rvMachineDetails.visibility = INVISIBLE
+                rvClayCrusher.visibility = INVISIBLE
                 tvNoData.visibility = VISIBLE
                 ivNoData.visibility = VISIBLE
                 tvStart.visibility = INVISIBLE
@@ -120,7 +106,7 @@ class LimestoneFragment : Fragment(), OnItemClick {
                 header.tvRhHoursDiff.text = DEFAULT_HOUR
                 header.tvRhMinutesDiff.text = MINUTES_RESET
             } else {
-                rvMachineDetails.visibility = VISIBLE
+                rvClayCrusher.visibility = VISIBLE
                 tvStart.visibility = VISIBLE
                 tvEnd.visibility = VISIBLE
                 tvRh.visibility = VISIBLE
@@ -128,5 +114,21 @@ class LimestoneFragment : Fragment(), OnItemClick {
                 ivNoData.visibility = INVISIBLE
             }
         }
+    }
+
+    override fun <T> onClicked(model: T) {
+        model as ClayCrusherMachine
+        // Save item in Constants Object class
+        model.apply {
+            clayCrusherMachine = ClayCrusherMachine(id, startTime, stopTime, reason, rh)
+        }
+        // Save machine name to determine which one to update before navigate
+        machineType = Type.CLAY_CRUSHER.value
+        findNavController()
+            .navigate(R.id.action_clayCrusherFragment_to_updateFragment)
+    }
+
+    override fun <T> onDeleted(model: T) {
+        viewModel.deleteClayCrusher(model as ClayCrusherMachine)
     }
 }

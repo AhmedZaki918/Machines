@@ -1,7 +1,6 @@
 package com.example.machines.utils
 
-import com.example.machines.data.model.MachineMain
-
 interface OnItemClick {
-    fun onClicked(model: MachineMain)
+    fun <T> onClicked(model: T)
+    fun <T> onDeleted(model: T)
 }

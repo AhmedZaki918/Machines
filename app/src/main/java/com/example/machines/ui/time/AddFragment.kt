@@ -15,8 +15,12 @@ import com.example.machines.data.local.Constants.DEFAULT_VALUE
 import com.example.machines.data.local.Constants.EMPTY
 import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.R_H_RESET
-import com.example.machines.data.model.MachineMain
+import com.example.machines.data.local.Constants.machineType
+import com.example.machines.data.local.Type
+import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.databinding.FragmentAddBinding
+import com.example.machines.ui.claycrusher.ClayCrusherViewModel
 import com.example.machines.ui.limestone.LimestoneViewModel
 import com.example.machines.utils.MachineUtils.changeThumbTint
 import com.example.machines.utils.click
@@ -30,7 +34,7 @@ class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var viewModel: LimestoneViewModel
-    private var counter = 1
+    private lateinit var clayCrusherViewModel: ClayCrusherViewModel
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -41,6 +45,8 @@ class AddFragment : Fragment() {
         binding = FragmentAddBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this)[LimestoneViewModel::class.java]
+        clayCrusherViewModel = ViewModelProvider(this)[ClayCrusherViewModel::class.java]
+
         binding.header.drawScreenHeader(getString(R.string.start_time), this)
         setClickListeners()
         return binding.root
@@ -96,16 +102,37 @@ class AddFragment : Fragment() {
 
 
     private fun addOneItem(startTime: String) {
+        if (machineType == Type.LIMESTONE.value) {
+            addLimestone(startTime)
+        } else if (machineType == Type.CLAY_CRUSHER.value) {
+            addClayCrusher(startTime)
+        }
+        findNavController().navigateUp()
+    }
+
+
+    private fun addLimestone(startTime: String) {
         viewModel.addLimestone(
-            MachineMain(
+            LimestoneMachine(
                 0,
                 startTime,
                 DEFAULT_VALUE,
                 EMPTY,
-                R_H_RESET,
-                DEFAULT_VALUE
+                R_H_RESET
             )
         )
-        findNavController().navigateUp()
+    }
+
+
+    private fun addClayCrusher(startTime: String) {
+        clayCrusherViewModel.addClayCrusher(
+            ClayCrusherMachine(
+                0,
+                startTime,
+                DEFAULT_VALUE,
+                EMPTY,
+                R_H_RESET
+            )
+        )
     }
 }

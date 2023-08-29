@@ -1,6 +1,7 @@
 package com.example.machines.data.local
 
-import com.example.machines.data.model.MachineMain
+import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.LimestoneMachine
 
 object Constants {
     const val DEFAULT_VALUE = "00:00"
@@ -15,6 +16,19 @@ object Constants {
     const val DOT = "."
     const val MINUTES_RESET = "00"
 
-    var machine = MachineMain()
+    var machine = LimestoneMachine()
+    var clayCrusherMachine = ClayCrusherMachine()
+
+    var RH_LIMESTONE = ""
+    var RH_CLAY_CRUSHER = ""
+
     const val LIMESTONE_TABLE = "Limestone"
+    const val CLAY_CRUSHER_TABLE = "ClayCrusher"
+    const val RAW_MILL_TABLE = "RawMill"
+    const val KILN_TABLE = "Kiln"
+    const val CEMENT_MILL_1_TABLE = "CementMill_1"
+    const val CEMENT_MILL_2_TABLE = "CementMill_2"
+    const val CEMENT_MILL_3_TABLE = "CementMill_3"
+
+    var machineType = ""
 }

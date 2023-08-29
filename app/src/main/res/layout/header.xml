@@ -74,11 +74,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:gravity="center"
+        android:text="0"
         android:textColor="@color/offWhite_light_alpha"
         app:layout_constraintStart_toEndOf="@+id/tv_rh_total_label"
         app:layout_constraintTop_toTopOf="@+id/tv_rh_total_label"
-        tools:ignore="HardcodedText"
-        tools:text="9" />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_rh_hours_diff"
@@ -96,11 +96,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:text="00"
         android:textColor="@color/offWhite_light_alpha"
         app:layout_constraintStart_toEndOf="@+id/tv_separator"
         app:layout_constraintTop_toTopOf="@+id/tv_separator"
-        tools:ignore="HardcodedText"
-        tools:text="45" />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_rh_minutes_diff"

@@ -14,9 +14,14 @@ import com.example.machines.R
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.SEVEN_AM
+import com.example.machines.data.local.Constants.clayCrusherMachine
 import com.example.machines.data.local.Constants.machine
-import com.example.machines.data.model.MachineMain
+import com.example.machines.data.local.Constants.machineType
+import com.example.machines.data.local.Type
+import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.databinding.FragmentUpdateBinding
+import com.example.machines.ui.claycrusher.ClayCrusherViewModel
 import com.example.machines.ui.limestone.LimestoneViewModel
 import com.example.machines.utils.MachineUtils.changeThumbTint
 import com.example.machines.utils.click
@@ -31,6 +36,7 @@ class UpdateFragment : Fragment() {
 
     private lateinit var binding: FragmentUpdateBinding
     private lateinit var viewModel: LimestoneViewModel
+    private lateinit var clayCrusherViewModel: ClayCrusherViewModel
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -41,6 +47,7 @@ class UpdateFragment : Fragment() {
 
         binding.header.drawScreenHeader(getString(R.string.stop_time), this)
         viewModel = ViewModelProvider(this)[LimestoneViewModel::class.java]
+        clayCrusherViewModel = ViewModelProvider(this)[ClayCrusherViewModel::class.java]
 
         setClickListeners()
         return binding.root
@@ -98,22 +105,59 @@ class UpdateFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateItem(time: String) {
         val reason = binding.etReasonEndTime.text.toString().trim()
-        var startTime = machine.startTime
         var endTime = time
 
-        if (startTime == RUNNING) startTime = SEVEN_AM
+
         if (endTime == RUNNING) endTime = SEVEN_AM
+
+        if (machineType == Type.LIMESTONE.value) {
+            updateLimestone(time, reason, endTime)
+        } else if (machineType == Type.CLAY_CRUSHER.value) {
+            updateClayCrusher(time, reason, endTime)
+        }
+        findNavController().navigateUp()
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun updateLimestone(
+        time: String,
+        reason: String,
+        endTime: String
+    ) {
+        var startTime = machine.startTime
+        if (startTime == RUNNING) startTime = SEVEN_AM
 
 
         viewModel.updateLimestone(
-            MachineMain(
+            LimestoneMachine(
                 machine.id,
-                machine.startTime,
+                startTime,
                 time,
                 reason,
                 differentInTwoTimes(startTime, endTime)
             )
         )
-        findNavController().navigateUp()
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun updateClayCrusher(
+        time: String,
+        reason: String,
+        endTime: String
+    ) {
+        var startTime = clayCrusherMachine.startTime
+        if (startTime == RUNNING) startTime = SEVEN_AM
+
+        clayCrusherViewModel.updateClayCrusher(
+            ClayCrusherMachine(
+                clayCrusherMachine.id,
+                startTime,
+                time,
+                reason,
+                differentInTwoTimes(startTime, endTime)
+            )
+        )
     }
 }

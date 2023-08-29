@@ -20,9 +20,16 @@
 
     <fragment
         android:id="@+id/clayCrusherFragment"
-        android:name="com.example.machines.ui.ClayCrusherFragment"
+        android:name="com.example.machines.ui.claycrusher.ClayCrusherFragment"
         android:label="fragment_clay_crusher"
-        tools:layout="@layout/fragment_clay_crusher" />
+        tools:layout="@layout/fragment_clay_crusher" >
+        <action
+            android:id="@+id/action_clayCrusherFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_clayCrusherFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
