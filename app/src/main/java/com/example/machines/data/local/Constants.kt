@@ -1,6 +1,7 @@
 package com.example.machines.data.local
 
 import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
 
@@ -20,10 +21,12 @@ object Constants {
     var limestone = LimestoneMachine()
     var clayCrusher = ClayCrusherMachine()
     var rawMill = RawMillMachine()
+    var kiln = KilnMachine()
 
     const val RH_LIMESTONE_KEY = "limestone_key"
     const val RH_CLAY_CRUSHER_KEY = "clay_crusher_key"
     const val RH_RAW_MILL_KEY = "raw_mill_key"
+    const val RH_KILN_KEY = "kiln_key"
 
     const val LIMESTONE_TABLE = "Limestone"
     const val CLAY_CRUSHER_TABLE = "ClayCrusher"
@@ -36,6 +39,7 @@ object Constants {
     const val LIMESTONE_STATUS_KEY = "limestone_status_key"
     const val CLAY_CRUSHER_STATUS_KEY = "clay_crusher_status_key"
     const val RAW_MILL_STATUS_KEY = "raw_mill_status_key"
+    const val KILN_STATUS_KEY = "kiln_status_key"
 
     var machineType = ""
 }

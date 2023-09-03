@@ -25,9 +25,9 @@ import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
 import com.example.machines.databinding.FragmentReportBinding
 import com.example.machines.databinding.HeaderFullReportBinding
-import com.example.machines.ui.adapter.ClayCrusherReportAdapter
-import com.example.machines.ui.adapter.LimestoneReportAdapter
-import com.example.machines.ui.adapter.RawMillReportAdapter
+import com.example.machines.ui.adapter.ClayCrusherAdapter
+import com.example.machines.ui.adapter.LimestoneAdapter
+import com.example.machines.ui.adapter.RawMillAdapter
 import com.example.machines.utils.UserPreferences
 import com.example.machines.utils.drawScreenHeader
 import dagger.hilt.android.AndroidEntryPoint
@@ -89,14 +89,11 @@ class ReportFragment : Fragment() {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     updateRunningStatus(
-                        headerLimestone,
-                        rvMachineLimestone,
-                        tvRhLimestone,
-                        tvNoLimestone,
+                        headerLimestone, rvMachineLimestone, tvRhLimestone, tvNoLimestone,
                         userPreferences.retrieveData(LIMESTONE_STATUS_KEY)
                     )
                 } else {
-                    rvMachineLimestone.adapter = LimestoneReportAdapter(it)
+                    rvMachineLimestone.adapter = LimestoneAdapter(it, null, true)
                     tvRhLimestone.text = userPreferences.retrieveData(RH_LIMESTONE_KEY)
                 }
             }
@@ -109,14 +106,11 @@ class ReportFragment : Fragment() {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     updateRunningStatus(
-                        headerClayCrusher,
-                        rvMachineClayCrusher,
-                        tvRhClayCrusher,
-                        tvNoClay,
+                        headerClayCrusher, rvMachineClayCrusher, tvRhClayCrusher, tvNoClay,
                         userPreferences.retrieveData(CLAY_CRUSHER_STATUS_KEY)
                     )
                 } else {
-                    rvMachineClayCrusher.adapter = ClayCrusherReportAdapter(it)
+                    rvMachineClayCrusher.adapter = ClayCrusherAdapter(it, null, true)
                     tvRhClayCrusher.text = userPreferences.retrieveData(RH_CLAY_CRUSHER_KEY)
                 }
             }
@@ -129,14 +123,11 @@ class ReportFragment : Fragment() {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     updateRunningStatus(
-                        headerRawMill,
-                        rvMachineRawMill,
-                        tvRhRawMill,
-                        tvNoRawMill,
+                        headerRawMill, rvMachineRawMill, tvRhRawMill, tvNoRawMill,
                         userPreferences.retrieveData(RAW_MILL_STATUS_KEY)
                     )
                 } else {
-                    rvMachineRawMill.adapter = RawMillReportAdapter(it)
+                    rvMachineRawMill.adapter = RawMillAdapter(it, null, true)
                     tvRhRawMill.text = userPreferences.retrieveData(RH_RAW_MILL_KEY)
                 }
             }
@@ -145,10 +136,8 @@ class ReportFragment : Fragment() {
 
 
     private fun updateRunningStatus(
-        header: HeaderFullReportBinding,
-        recyclerView: RecyclerView,
-        tvRhValue: TextView,
-        tvRunningStatus: TextView,
+        header: HeaderFullReportBinding, recyclerView: RecyclerView,
+        tvRhValue: TextView, tvRunningStatus: TextView,
         runningStatusValue: String?
     ) {
         tvRhValue.visibility = GONE

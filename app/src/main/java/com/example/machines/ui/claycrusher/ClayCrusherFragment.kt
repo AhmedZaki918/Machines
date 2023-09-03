@@ -85,7 +85,7 @@ class ClayCrusherFragment : Fragment(), OnItemClick {
 
 
     private fun updateUi(items: List<ClayCrusherMachine>) {
-        binding.rvClayCrusher.adapter = ClayCrusherAdapter(items, this)
+        binding.rvClayCrusher.adapter = ClayCrusherAdapter(items, this,false)
         rhTotal = updateRhTotal(items, binding.header)
         updateRunningStatusForMachine(items)
 

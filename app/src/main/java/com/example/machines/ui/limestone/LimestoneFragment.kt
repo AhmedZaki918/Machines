@@ -83,7 +83,7 @@ class LimestoneFragment : Fragment(), OnItemClick {
 
 
     private fun updateUi(items: List<LimestoneMachine>) {
-        binding.rvMachineDetails.adapter = LimestoneAdapter(items, this)
+        binding.rvMachineDetails.adapter = LimestoneAdapter(items, this,false)
         rhTotal = updateRhTotal(items, binding.header)
         updateRunningStatusForMachine(items)
 

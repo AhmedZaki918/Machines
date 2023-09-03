@@ -3,6 +3,7 @@ package com.example.machines.data.repository
 import androidx.lifecycle.LiveData
 import com.example.machines.data.local.MachineDao
 import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
 import javax.inject.Inject
@@ -21,5 +22,9 @@ class ReportRepo @Inject constructor(
 
     fun getRawMillReport(): LiveData<List<RawMillMachine>> {
         return dao.getAllRawMill()
+    }
+
+    fun getKilnReport(): LiveData<List<KilnMachine>>{
+        return dao.getAllKiln()
     }
 }

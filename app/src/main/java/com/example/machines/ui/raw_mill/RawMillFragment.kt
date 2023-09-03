@@ -82,7 +82,7 @@ class RawMillFragment : Fragment(),OnItemClick {
 
 
     private fun updateUi(items: List<RawMillMachine>) {
-        binding.rvRawMill.adapter = RawMillAdapter(items, this)
+        binding.rvRawMill.adapter = RawMillAdapter(items, this,false)
         rhTotal = updateRhTotal(items, binding.header)
         updateRunningStatusForMachine(items)
 
