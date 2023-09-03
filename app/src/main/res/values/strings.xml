@@ -32,5 +32,8 @@
     <string name="no_data">No data has been found yet.</string>
     <string name="hours">Hours</string>
     <string name="minutes">Minutes</string>
+    <string name="full_report">Report</string>
+    <string name="no_stop">No Stop</string>
+    <string name="home">Home</string>
 
 </resources>

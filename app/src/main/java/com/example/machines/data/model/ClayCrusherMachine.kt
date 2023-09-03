@@ -13,4 +13,10 @@ data class ClayCrusherMachine(
     val stopTime: String = "",
     val reason: String = "",
     val rh: String = ""
-)
+){
+    companion object {
+        fun machineName(): String {
+            return "Clay Crusher"
+        }
+    }
+}

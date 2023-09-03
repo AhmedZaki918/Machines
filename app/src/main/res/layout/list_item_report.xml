@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:text="00:00"
+        tools:text="00:00"
         android:textColor="@color/offWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="00:00"
+        tools:text="00:00"
         android:textColor="@color/offWhite"
         app:layout_constraintStart_toEndOf="@+id/tv_start_time_report"
         app:layout_constraintTop_toTopOf="@+id/tv_start_time_report" />
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="00:00"
+        tools:text="00:00"
         android:textColor="@color/offWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_end_time_report" />

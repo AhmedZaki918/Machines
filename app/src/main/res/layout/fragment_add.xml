@@ -12,8 +12,6 @@
         layout="@layout/header" />
 
 
-
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -32,15 +30,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textColor="@color/yellow"
         android:text="@string/_24_hour_time_format"
+        android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="@+id/textView8" />
-
-
-
-
 
 
     <com.google.android.material.card.MaterialCardView
@@ -74,18 +68,19 @@
 
             <EditText
                 android:id="@+id/et_hours"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="16dp"
                 android:background="@null"
                 android:hint="@string/hours"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="2"
+                android:paddingHorizontal="16dp"
                 android:textColor="@color/red"
                 android:textColorHint="@color/offWhite_light_alpha"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintEnd_toStartOf="@+id/textView13"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
@@ -104,17 +99,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-
-
-
-
-
-
-
-
-
-
 
 
     <com.google.android.material.card.MaterialCardView
@@ -147,18 +131,19 @@
 
             <EditText
                 android:id="@+id/et_minutes"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="16dp"
                 android:background="@null"
                 android:hint="@string/minutes"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="2"
+                android:paddingHorizontal="16dp"
                 android:textColor="@color/red"
                 android:textColorHint="@color/offWhite_light_alpha"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                app:layout_constraintEnd_toStartOf="@+id/textView14"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/imageView6" />
 

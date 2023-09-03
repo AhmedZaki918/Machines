@@ -12,10 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.machines.R
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.DEFAULT_HOUR
+import com.example.machines.data.local.Constants.DEFAULT_VALUE
+import com.example.machines.data.local.Constants.EMPTY
+import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
 import com.example.machines.data.local.Constants.MINUTES_RESET
-import com.example.machines.data.local.Constants.RH_LIMESTONE
+import com.example.machines.data.local.Constants.RH_LIMESTONE_KEY
 import com.example.machines.data.local.Constants.machine
 import com.example.machines.data.local.Constants.machineType
+import com.example.machines.data.local.RunningStatus
 import com.example.machines.data.local.Type
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.databinding.FragmentLimestoneBinding
@@ -24,6 +28,7 @@ import com.example.machines.ui.Time
 import com.example.machines.ui.adapter.LimestoneAdapter
 import com.example.machines.utils.MachineUtils.updateNotRunningHours
 import com.example.machines.utils.OnItemClick
+import com.example.machines.utils.UserPreferences
 import com.example.machines.utils.click
 import com.example.machines.utils.convertMinutesToTime
 import com.example.machines.utils.convertTimeToMinutes
@@ -38,6 +43,7 @@ class LimestoneFragment : Fragment(), OnItemClick {
     private lateinit var binding: FragmentLimestoneBinding
     private lateinit var viewModel: LimestoneViewModel
     private var rhTotal: Time? = null
+    private lateinit var userPreferences: UserPreferences
 
 
     override fun onCreateView(
@@ -48,9 +54,10 @@ class LimestoneFragment : Fragment(), OnItemClick {
 
         binding.header.drawScreenHeader(getString(R.string.limestone_crusher), this)
         viewModel = ViewModelProvider(this)[LimestoneViewModel::class.java]
+        userPreferences = UserPreferences(requireContext())
+
         viewModel.getAllLimestoneItems().observe(viewLifecycleOwner) { items ->
             switchVisibility(items)
-            updateUi(items)
         }
         setClickListeners()
         return binding.root
@@ -78,8 +85,11 @@ class LimestoneFragment : Fragment(), OnItemClick {
     private fun updateUi(items: List<LimestoneMachine>) {
         binding.rvMachineDetails.adapter = LimestoneAdapter(items, this)
         rhTotal = updateRhTotal(items, binding.header)
+        updateRunningStatusForMachine(items)
+
         // Save total rh for limestone
-        RH_LIMESTONE = rhTotal!!.hours + COLUMN + formatTime(rhTotal!!.minutes)
+        val rh = rhTotal!!.hours + COLUMN + formatTime(rhTotal!!.minutes)
+        userPreferences.saveData(RH_LIMESTONE_KEY, rh)
     }
 
     private fun setClickListeners() {
@@ -111,6 +121,7 @@ class LimestoneFragment : Fragment(), OnItemClick {
     private fun switchVisibility(items: List<LimestoneMachine>) {
         binding.apply {
             if (items.isEmpty()) {
+                updateRunningStatusForMachine(items)
                 rvMachineDetails.visibility = INVISIBLE
                 tvNoData.visibility = VISIBLE
                 ivNoData.visibility = VISIBLE
@@ -126,6 +137,29 @@ class LimestoneFragment : Fragment(), OnItemClick {
                 tvRh.visibility = VISIBLE
                 tvNoData.visibility = INVISIBLE
                 ivNoData.visibility = INVISIBLE
+                updateUi(items)
+            }
+        }
+    }
+
+
+    private fun updateRunningStatusForMachine(items: List<LimestoneMachine>) {
+        if (items.isEmpty()) {
+            userPreferences.saveData(
+                LIMESTONE_STATUS_KEY,
+                RunningStatus.NO_START.value
+            )
+        } else {
+            if (items[0].startTime != EMPTY && items[0].stopTime == DEFAULT_VALUE) {
+                userPreferences.saveData(
+                    LIMESTONE_STATUS_KEY,
+                    RunningStatus.NO_STOP.value
+                )
+            } else {
+                userPreferences.saveData(
+                    LIMESTONE_STATUS_KEY,
+                    RunningStatus.NORMAL.value
+                )
             }
         }
     }

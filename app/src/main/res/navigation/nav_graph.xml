@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_homeFragment_to_clayCrusherFragment"
             app:destination="@id/clayCrusherFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -53,4 +56,9 @@
         android:name="com.example.machines.ui.time.UpdateFragment"
         android:label="fragment_update"
         tools:layout="@layout/fragment_update" />
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.example.machines.ui.report.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" />
 </navigation>

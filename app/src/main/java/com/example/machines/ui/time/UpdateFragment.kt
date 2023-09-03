@@ -128,7 +128,6 @@ class UpdateFragment : Fragment() {
         var startTime = machine.startTime
         if (startTime == RUNNING) startTime = SEVEN_AM
 
-
         viewModel.updateLimestone(
             LimestoneMachine(
                 machine.id,

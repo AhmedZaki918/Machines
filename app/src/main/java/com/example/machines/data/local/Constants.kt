@@ -19,8 +19,8 @@ object Constants {
     var machine = LimestoneMachine()
     var clayCrusherMachine = ClayCrusherMachine()
 
-    var RH_LIMESTONE = ""
-    var RH_CLAY_CRUSHER = ""
+    const val RH_LIMESTONE_KEY = "limestone_key"
+    const val RH_CLAY_CRUSHER_KEY = "clay_crusher_key"
 
     const val LIMESTONE_TABLE = "Limestone"
     const val CLAY_CRUSHER_TABLE = "ClayCrusher"
@@ -29,6 +29,9 @@ object Constants {
     const val CEMENT_MILL_1_TABLE = "CementMill_1"
     const val CEMENT_MILL_2_TABLE = "CementMill_2"
     const val CEMENT_MILL_3_TABLE = "CementMill_3"
+
+    const val LIMESTONE_STATUS_KEY = "limestone_status_key"
+    const val CLAY_CRUSHER_STATUS_KEY = "clay_crusher_status_key"
 
     var machineType = ""
 }
