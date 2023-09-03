@@ -17,7 +17,7 @@ import com.example.machines.data.local.Constants.EMPTY
 import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
 import com.example.machines.data.local.Constants.MINUTES_RESET
 import com.example.machines.data.local.Constants.RH_LIMESTONE_KEY
-import com.example.machines.data.local.Constants.machine
+import com.example.machines.data.local.Constants.limestone
 import com.example.machines.data.local.Constants.machineType
 import com.example.machines.data.local.RunningStatus
 import com.example.machines.data.local.Type
@@ -68,7 +68,7 @@ class LimestoneFragment : Fragment(), OnItemClick {
         model as LimestoneMachine
         // Save item in Constants Object class
         model.apply {
-            machine = LimestoneMachine(id, startTime, stopTime, reason, rh)
+            limestone = LimestoneMachine(id, startTime, stopTime, reason, rh)
         }
         // Save machine name to determine which one to update before navigate
         machineType = Type.LIMESTONE.value

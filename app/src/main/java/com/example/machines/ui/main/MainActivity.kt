@@ -1,5 +1,6 @@
 package com.example.machines.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.machines.databinding.ActivityMainBinding

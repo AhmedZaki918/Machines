@@ -187,18 +187,19 @@
 
             <EditText
                 android:id="@+id/et_hours"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="16dp"
                 android:background="@null"
                 android:hint="@string/hours"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="2"
+                android:paddingHorizontal="16dp"
                 android:textColor="@color/red"
                 android:textColorHint="@color/offWhite_light_alpha"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintEnd_toStartOf="@+id/textView13"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="@+id/imageView5" />
 

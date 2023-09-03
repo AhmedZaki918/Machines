@@ -2,6 +2,7 @@ package com.example.machines.data.local
 
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.LimestoneMachine
+import com.example.machines.data.model.RawMillMachine
 
 object Constants {
     const val DEFAULT_VALUE = "00:00"
@@ -16,11 +17,13 @@ object Constants {
     const val DOT = "."
     const val MINUTES_RESET = "00"
 
-    var machine = LimestoneMachine()
-    var clayCrusherMachine = ClayCrusherMachine()
+    var limestone = LimestoneMachine()
+    var clayCrusher = ClayCrusherMachine()
+    var rawMill = RawMillMachine()
 
     const val RH_LIMESTONE_KEY = "limestone_key"
     const val RH_CLAY_CRUSHER_KEY = "clay_crusher_key"
+    const val RH_RAW_MILL_KEY = "raw_mill_key"
 
     const val LIMESTONE_TABLE = "Limestone"
     const val CLAY_CRUSHER_TABLE = "ClayCrusher"
@@ -32,6 +35,7 @@ object Constants {
 
     const val LIMESTONE_STATUS_KEY = "limestone_status_key"
     const val CLAY_CRUSHER_STATUS_KEY = "clay_crusher_status_key"
+    const val RAW_MILL_STATUS_KEY = "raw_mill_status_key"
 
     var machineType = ""
 }

@@ -7,13 +7,12 @@
     android:background="@color/colorPrimaryDark"
     android:fillViewport="true"
     android:paddingBottom="16dp"
-    tools:context=".ui.limestone.LimestoneFragment">
+    tools:context=".ui.raw_mill.RawMillFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -89,7 +88,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_machine_details"
+            android:id="@+id/rv_raw_mill"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -100,7 +99,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_start"
             app:layout_constraintVertical_bias="0.0"
-            tools:itemCount="5"
+            tools:itemCount="3"
             tools:listitem="@layout/details" />
 
         <ImageView
@@ -108,8 +107,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:alpha="0.7"
-            android:visibility="invisible"
             android:src="@drawable/baseline_add_to_queue"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,10 +121,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:alpha="0.7"
-            android:visibility="invisible"
-            android:textColor="@color/offWhite"
             android:text="@string/no_data"
+            android:textColor="@color/offWhite"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_no_data" />

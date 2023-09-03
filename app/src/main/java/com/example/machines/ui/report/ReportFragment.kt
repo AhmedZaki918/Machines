@@ -16,14 +16,18 @@ import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
 import com.example.machines.data.local.Constants.DEFAULT_VALUE
 import com.example.machines.data.local.Constants.EMPTY
 import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
+import com.example.machines.data.local.Constants.RAW_MILL_STATUS_KEY
 import com.example.machines.data.local.Constants.RH_CLAY_CRUSHER_KEY
 import com.example.machines.data.local.Constants.RH_LIMESTONE_KEY
+import com.example.machines.data.local.Constants.RH_RAW_MILL_KEY
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.LimestoneMachine
+import com.example.machines.data.model.RawMillMachine
 import com.example.machines.databinding.FragmentReportBinding
 import com.example.machines.databinding.HeaderFullReportBinding
 import com.example.machines.ui.adapter.ClayCrusherReportAdapter
 import com.example.machines.ui.adapter.LimestoneReportAdapter
+import com.example.machines.ui.adapter.RawMillReportAdapter
 import com.example.machines.utils.UserPreferences
 import com.example.machines.utils.drawScreenHeader
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +53,7 @@ class ReportFragment : Fragment() {
 
         updateLimestone()
         updateClayCrusher()
+        updateRawMill()
 
         updateMachinesNames()
         switchVisibility()
@@ -60,6 +65,7 @@ class ReportFragment : Fragment() {
         binding.apply {
             headerLimestone.tvMachineName.text = LimestoneMachine.machineName()
             headerClayCrusher.tvMachineName.text = ClayCrusherMachine.machineName()
+            headerRawMill.tvMachineName.text = RawMillMachine.machineName()
         }
     }
 
@@ -112,6 +118,26 @@ class ReportFragment : Fragment() {
                 } else {
                     rvMachineClayCrusher.adapter = ClayCrusherReportAdapter(it)
                     tvRhClayCrusher.text = userPreferences.retrieveData(RH_CLAY_CRUSHER_KEY)
+                }
+            }
+        }
+    }
+
+
+    private fun updateRawMill() {
+        viewModel.getAllRawMillItems().observe(viewLifecycleOwner) {
+            binding.apply {
+                if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
+                    updateRunningStatus(
+                        headerRawMill,
+                        rvMachineRawMill,
+                        tvRhRawMill,
+                        tvNoRawMill,
+                        userPreferences.retrieveData(RAW_MILL_STATUS_KEY)
+                    )
+                } else {
+                    rvMachineRawMill.adapter = RawMillReportAdapter(it)
+                    tvRhRawMill.text = userPreferences.retrieveData(RH_RAW_MILL_KEY)
                 }
             }
         }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.machines.data.local.MachineDao
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.LimestoneMachine
+import com.example.machines.data.model.RawMillMachine
 import javax.inject.Inject
 
 class ReportRepo @Inject constructor(
@@ -16,5 +17,9 @@ class ReportRepo @Inject constructor(
 
     fun getClayCrusherReport(): LiveData<List<ClayCrusherMachine>> {
         return dao.getAllClayCrusher()
+    }
+
+    fun getRawMillReport(): LiveData<List<RawMillMachine>> {
+        return dao.getAllRawMill()
     }
 }

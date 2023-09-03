@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_homeFragment_to_reportFragment"
             app:destination="@id/reportFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rawMillFragment"
+            app:destination="@id/rawMillFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -61,4 +64,16 @@
         android:name="com.example.machines.ui.report.ReportFragment"
         android:label="fragment_report"
         tools:layout="@layout/fragment_report" />
+    <fragment
+        android:id="@+id/rawMillFragment"
+        android:name="com.example.machines.ui.raw_mill.RawMillFragment"
+        android:label="fragment_raw_mill"
+        tools:layout="@layout/fragment_raw_mill" >
+        <action
+            android:id="@+id/action_rawMillFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_rawMillFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
 </navigation>

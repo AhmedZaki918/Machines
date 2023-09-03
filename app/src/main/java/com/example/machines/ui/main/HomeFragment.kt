@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.machines.R
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
 import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
+import com.example.machines.data.local.Constants.RAW_MILL_STATUS_KEY
 import com.example.machines.data.local.RunningStatus
 import com.example.machines.databinding.FragmentHomeBinding
 import com.example.machines.utils.UserPreferences
@@ -53,6 +54,9 @@ class HomeFragment : Fragment() {
             cvClayCrusher.click {
                 findNavController().navigate(R.id.action_homeFragment_to_clayCrusherFragment)
             }
+            cvRawMill.click {
+                findNavController().navigate(R.id.action_homeFragment_to_rawMillFragment)
+            }
             cvAllMachines.click {
                 findNavController().navigate(R.id.action_homeFragment_to_reportFragment)
             }
@@ -66,10 +70,13 @@ class HomeFragment : Fragment() {
                 retrieveData(LIMESTONE_STATUS_KEY),
                 binding.ivLimestoneStatus
             )
-
             updateRunningStatus(
                 retrieveData(CLAY_CRUSHER_STATUS_KEY),
                 binding.ivClayStatus
+            )
+            updateRunningStatus(
+                retrieveData(RAW_MILL_STATUS_KEY),
+                binding.ivRawMillStatus
             )
         }
     }
@@ -95,20 +102,17 @@ class HomeFragment : Fragment() {
         ivMachineStatus: ImageView
     ) {
         when (currentStatus) {
-            RunningStatus.NORMAL.value -> {
-                ivMachineStatus.imageTintList = AppCompatResources
-                    .getColorStateList(requireContext(), R.color.green)
-            }
-
-            RunningStatus.NO_START.value -> {
-                ivMachineStatus.imageTintList = AppCompatResources
-                    .getColorStateList(requireContext(), R.color.red)
-            }
-
-            else -> {
-                ivMachineStatus.imageTintList = AppCompatResources
-                    .getColorStateList(requireContext(), R.color.yellow)
-            }
+            RunningStatus.NORMAL.value -> changeImageViewColor(ivMachineStatus, R.color.green)
+            RunningStatus.NO_STOP.value -> changeImageViewColor(ivMachineStatus, R.color.yellow)
+            else -> changeImageViewColor(ivMachineStatus, R.color.red)
         }
+    }
+
+    private fun changeImageViewColor(
+        ivMachineStatus: ImageView,
+        color: Int
+    ) {
+        ivMachineStatus.imageTintList = AppCompatResources
+            .getColorStateList(requireContext(), color)
     }
 }

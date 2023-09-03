@@ -15,7 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="Start"
-        android:textColor="@color/offWhite"
+        android:textColor="@color/yellow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:textColor="@color/yellow"
         android:text="Stop"
-        android:textColor="@color/offWhite"
         app:layout_constraintStart_toEndOf="@+id/tv_start"
         app:layout_constraintTop_toTopOf="@+id/tv_start" />
 
@@ -35,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
+        android:textColor="@color/yellow"
         android:text="R.H"
-        android:textColor="@color/offWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_stop" />
 
@@ -45,8 +45,6 @@
         android:id="@+id/tv_reason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reason"
-        android:textColor="@color/offWhite"
         app:layout_constraintEnd_toStartOf="@+id/tv_rh"
         app:layout_constraintStart_toEndOf="@+id/tv_stop"
         app:layout_constraintTop_toTopOf="@+id/tv_stop" />

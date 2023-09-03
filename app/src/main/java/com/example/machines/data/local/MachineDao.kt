@@ -9,8 +9,10 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_TABLE
 import com.example.machines.data.local.Constants.LIMESTONE_TABLE
+import com.example.machines.data.local.Constants.RAW_MILL_TABLE
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.LimestoneMachine
+import com.example.machines.data.model.RawMillMachine
 
 @Dao
 interface MachineDao {
@@ -41,4 +43,18 @@ interface MachineDao {
 
     @Delete
     suspend fun deleteClayCrusher(clayCrusher: ClayCrusherMachine)
+
+
+    // Raw Mill Machine
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addRawMill(rawMill: RawMillMachine)
+
+    @Query("SELECT * FROM $RAW_MILL_TABLE")
+    fun getAllRawMill(): LiveData<List<RawMillMachine>>
+
+    @Update
+    suspend fun updateRawMill(rawMill: RawMillMachine)
+
+    @Delete
+    suspend fun deleteRawMill(rawMill: RawMillMachine)
 }

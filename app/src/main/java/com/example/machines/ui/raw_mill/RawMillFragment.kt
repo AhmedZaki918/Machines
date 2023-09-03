@@ -1,33 +1,31 @@
-package com.example.machines.ui.claycrusher
+package com.example.machines.ui.raw_mill
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.machines.R
-import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
+import com.example.machines.data.local.Constants
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.DEFAULT_HOUR
 import com.example.machines.data.local.Constants.DEFAULT_VALUE
 import com.example.machines.data.local.Constants.EMPTY
 import com.example.machines.data.local.Constants.MINUTES_RESET
-import com.example.machines.data.local.Constants.RH_CLAY_CRUSHER_KEY
-import com.example.machines.data.local.Constants.clayCrusher
+import com.example.machines.data.local.Constants.RAW_MILL_STATUS_KEY
 import com.example.machines.data.local.Constants.machineType
+import com.example.machines.data.local.Constants.rawMill
 import com.example.machines.data.local.RunningStatus
 import com.example.machines.data.local.Type
-import com.example.machines.data.model.ClayCrusherMachine
-import com.example.machines.databinding.FragmentClayCrusherBinding
+import com.example.machines.data.model.RawMillMachine
+import com.example.machines.databinding.FragmentRawMillBinding
 import com.example.machines.databinding.HeaderBinding
 import com.example.machines.ui.Time
-import com.example.machines.ui.adapter.ClayCrusherAdapter
+import com.example.machines.ui.adapter.RawMillAdapter
 import com.example.machines.utils.MachineUtils
 import com.example.machines.utils.OnItemClick
 import com.example.machines.utils.UserPreferences
@@ -40,26 +38,25 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class ClayCrusherFragment : Fragment(), OnItemClick {
+class RawMillFragment : Fragment(),OnItemClick {
 
-    private lateinit var binding: FragmentClayCrusherBinding
-    private lateinit var viewModel: ClayCrusherViewModel
-    private lateinit var userPreferences: UserPreferences
+    private lateinit var binding: FragmentRawMillBinding
+    private lateinit var viewModel: RawMillViewModel
+    private lateinit var userPreferences : UserPreferences
     private var rhTotal: Time? = null
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentClayCrusherBinding.inflate(inflater, container, false)
+        binding = FragmentRawMillBinding.inflate(inflater, container, false)
 
-        binding.header.drawScreenHeader(getString(R.string.clay_crusher), this)
-        viewModel = ViewModelProvider(this)[ClayCrusherViewModel::class.java]
+        binding.header.drawScreenHeader(getString(R.string.raw_mill),this)
+        viewModel = ViewModelProvider(this)[RawMillViewModel::class.java]
         userPreferences = UserPreferences(requireContext())
 
-        viewModel.getAllClayCrusherItems().observe(viewLifecycleOwner) { items ->
+        viewModel.getAllRawMillItems().observe(viewLifecycleOwner) { items ->
             switchVisibility(items)
         }
         setClickListeners()
@@ -68,44 +65,44 @@ class ClayCrusherFragment : Fragment(), OnItemClick {
 
 
     override fun <T> onClicked(model: T) {
-        model as ClayCrusherMachine
+        model as RawMillMachine
         // Save item in Constants Object class
         model.apply {
-            clayCrusher = ClayCrusherMachine(id, startTime, stopTime, reason, rh)
+            rawMill = RawMillMachine(id, startTime, stopTime, reason, rh)
         }
         // Save machine name to determine which one to update before navigate
-        machineType = Type.CLAY_CRUSHER.value
+        machineType = Type.RAW_MILL.value
         findNavController()
-            .navigate(R.id.action_clayCrusherFragment_to_updateFragment)
+            .navigate(R.id.action_rawMillFragment_to_updateFragment)
     }
 
     override fun <T> onDeleted(model: T) {
-        viewModel.deleteClayCrusher(model as ClayCrusherMachine)
+        viewModel.deleteRawMill(model as RawMillMachine)
     }
 
 
-    private fun updateUi(items: List<ClayCrusherMachine>) {
-        binding.rvClayCrusher.adapter = ClayCrusherAdapter(items, this)
+    private fun updateUi(items: List<RawMillMachine>) {
+        binding.rvRawMill.adapter = RawMillAdapter(items, this)
         rhTotal = updateRhTotal(items, binding.header)
         updateRunningStatusForMachine(items)
 
-        // Save total rh for limestone
+        // Save total rh for raw mill
         val rh = rhTotal!!.hours + COLUMN + formatTime(rhTotal!!.minutes)
-        userPreferences.saveData(RH_CLAY_CRUSHER_KEY, rh)
+        userPreferences.saveData(Constants.RH_RAW_MILL_KEY, rh)
     }
 
 
     private fun setClickListeners() {
         // Save machine name to determine which one to add before navigate
-        machineType = Type.CLAY_CRUSHER.value
+        machineType = Type.RAW_MILL.value
         binding.fab.click {
-            findNavController().navigate(R.id.action_clayCrusherFragment_to_addFragment)
+            findNavController().navigate(R.id.action_rawMillFragment_to_addFragment)
         }
     }
 
 
     private fun updateRhTotal(
-        items: List<ClayCrusherMachine>,
+        items: List<RawMillMachine>,
         binding: HeaderBinding
     ): Time {
         var totalMinutes = 0
@@ -121,11 +118,11 @@ class ClayCrusherFragment : Fragment(), OnItemClick {
     }
 
 
-    private fun switchVisibility(items: List<ClayCrusherMachine>) {
+    private fun switchVisibility(items: List<RawMillMachine>) {
         binding.apply {
             if (items.isEmpty()) {
                 updateRunningStatusForMachine(items)
-                rvClayCrusher.visibility = INVISIBLE
+                rvRawMill.visibility = INVISIBLE
                 tvNoData.visibility = VISIBLE
                 ivNoData.visibility = VISIBLE
                 tvStart.visibility = INVISIBLE
@@ -134,7 +131,7 @@ class ClayCrusherFragment : Fragment(), OnItemClick {
                 header.tvRhHoursDiff.text = DEFAULT_HOUR
                 header.tvRhMinutesDiff.text = MINUTES_RESET
             } else {
-                rvClayCrusher.visibility = VISIBLE
+                rvRawMill.visibility = VISIBLE
                 tvStart.visibility = VISIBLE
                 tvEnd.visibility = VISIBLE
                 tvRh.visibility = VISIBLE
@@ -146,21 +143,21 @@ class ClayCrusherFragment : Fragment(), OnItemClick {
     }
 
 
-    private fun updateRunningStatusForMachine(items: List<ClayCrusherMachine>) {
+    private fun updateRunningStatusForMachine(items: List<RawMillMachine>) {
         if (items.isEmpty()) {
             userPreferences.saveData(
-                CLAY_CRUSHER_STATUS_KEY,
+                RAW_MILL_STATUS_KEY,
                 RunningStatus.NO_START.value
             )
         } else {
             if (items[0].startTime != EMPTY && items[0].stopTime == DEFAULT_VALUE) {
                 userPreferences.saveData(
-                    CLAY_CRUSHER_STATUS_KEY,
+                    RAW_MILL_STATUS_KEY,
                     RunningStatus.NO_STOP.value
                 )
             } else {
                 userPreferences.saveData(
-                    CLAY_CRUSHER_STATUS_KEY,
+                    RAW_MILL_STATUS_KEY,
                     RunningStatus.NORMAL.value
                 )
             }
