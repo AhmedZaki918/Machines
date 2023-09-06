@@ -7,10 +7,8 @@ import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.example.machines.R
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
 import com.example.machines.data.local.Constants.DEFAULT_VALUE
@@ -28,7 +26,7 @@ import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
 import com.example.machines.databinding.FragmentReportBinding
-import com.example.machines.databinding.HeaderFullReportBinding
+import com.example.machines.databinding.ListItemMachineReportBinding
 import com.example.machines.ui.adapter.ClayCrusherAdapter
 import com.example.machines.ui.adapter.KilnAdapter
 import com.example.machines.ui.adapter.LimestoneAdapter
@@ -95,18 +93,16 @@ class ReportFragment : Fragment() {
         viewModel.getAllLimestoneReport().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
-
                     var runningStatusValue = userPreferences.retrieveData(LIMESTONE_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
                         runningStatusValue = RunningStatus.NO_START.value
                     }
-                    updateRunningStatus(
-                        headerLimestone, rvMachineLimestone, tvRhLimestone,
-                        tvNoLimestone, runningStatusValue
-                    )
+                    updateRunningStatus(headerLimestone, runningStatusValue)
                 } else {
-                    rvMachineLimestone.adapter = LimestoneAdapter(it, null, true)
-                    tvRhLimestone.text = userPreferences.retrieveData(RH_LIMESTONE_KEY)
+                    headerLimestone.apply {
+                        rvMachine.adapter = LimestoneAdapter(it, null, true)
+                        tvRhValue.text = userPreferences.retrieveData(RH_LIMESTONE_KEY)
+                    }
                 }
             }
         }
@@ -117,18 +113,16 @@ class ReportFragment : Fragment() {
         viewModel.getAllClayCrusherItems().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
-
                     var runningStatusValue = userPreferences.retrieveData(CLAY_CRUSHER_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
                         runningStatusValue = RunningStatus.NO_START.value
                     }
-                    updateRunningStatus(
-                        headerClayCrusher, rvMachineClayCrusher, tvRhClayCrusher,
-                        tvNoClay, runningStatusValue
-                    )
+                    updateRunningStatus(headerClayCrusher, runningStatusValue)
                 } else {
-                    rvMachineClayCrusher.adapter = ClayCrusherAdapter(it, null, true)
-                    tvRhClayCrusher.text = userPreferences.retrieveData(RH_CLAY_CRUSHER_KEY)
+                    headerClayCrusher.apply {
+                        rvMachine.adapter = ClayCrusherAdapter(it, null, true)
+                        tvRhValue.text = userPreferences.retrieveData(RH_CLAY_CRUSHER_KEY)
+                    }
                 }
             }
         }
@@ -139,18 +133,16 @@ class ReportFragment : Fragment() {
         viewModel.getAllRawMillItems().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
-
                     var runningStatusValue = userPreferences.retrieveData(RAW_MILL_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
                         runningStatusValue = RunningStatus.NO_START.value
                     }
-                    updateRunningStatus(
-                        headerRawMill, rvMachineRawMill, tvRhRawMill,
-                        tvNoRawMill, runningStatusValue
-                    )
+                    updateRunningStatus(headerRawMill, runningStatusValue)
                 } else {
-                    rvMachineRawMill.adapter = RawMillAdapter(it, null, true)
-                    tvRhRawMill.text = userPreferences.retrieveData(RH_RAW_MILL_KEY)
+                    headerRawMill.apply {
+                        rvMachine.adapter = RawMillAdapter(it, null, true)
+                        tvRhValue.text = userPreferences.retrieveData(RH_RAW_MILL_KEY)
+                    }
                 }
             }
         }
@@ -161,18 +153,16 @@ class ReportFragment : Fragment() {
         viewModel.getAllKilnItems().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
-
                     var runningStatusValue = userPreferences.retrieveData(KILN_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
                         runningStatusValue = RunningStatus.NO_START.value
                     }
-                    updateRunningStatus(
-                        headerKiln, rvMachineKiln, tvRhKiln,
-                        tvNoKiln, runningStatusValue
-                    )
+                    updateRunningStatus(headerKiln, runningStatusValue)
                 } else {
-                    rvMachineKiln.adapter = KilnAdapter(it, null, true)
-                    tvRhKiln.text = userPreferences.retrieveData(RH_KILN_KEY)
+                    headerKiln.apply {
+                        rvMachine.adapter = KilnAdapter(it, null, true)
+                        tvRhValue.text = userPreferences.retrieveData(RH_KILN_KEY)
+                    }
                 }
             }
         }
@@ -180,23 +170,22 @@ class ReportFragment : Fragment() {
 
 
     private fun updateRunningStatus(
-        header: HeaderFullReportBinding, recyclerView: RecyclerView,
-        tvRhValue: TextView, tvRunningStatus: TextView,
+        header: ListItemMachineReportBinding,
         runningStatusValue: String?
     ) {
-        tvRhValue.visibility = GONE
-        recyclerView.visibility = INVISIBLE
+        header.tvRhValue.visibility = GONE
+        header.rvMachine.visibility = INVISIBLE
 
         header.apply {
             tvStart.visibility = GONE
             tvStop.visibility = GONE
-            tvReason.visibility = GONE
             tvRh.visibility = GONE
+
+            val params = header.rvMachine.layoutParams
+            params.height = 50
+            rvMachine.layoutParams = params
+            tvNoData.visibility = VISIBLE
+            tvNoData.text = runningStatusValue
         }
-        val params = recyclerView.layoutParams
-        params.height = 50
-        recyclerView.layoutParams = params
-        tvRunningStatus.visibility = VISIBLE
-        tvRunningStatus.text = runningStatusValue
     }
 }
