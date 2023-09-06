@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_homeFragment_to_rawMillFragment"
             app:destination="@id/rawMillFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_kilnFragment"
+            app:destination="@id/kilnFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -75,5 +78,17 @@
         <action
             android:id="@+id/action_rawMillFragment_to_addFragment"
             app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kilnFragment"
+        android:name="com.example.machines.ui.kiln.KilnFragment"
+        android:label="fragment_kiln"
+        tools:layout="@layout/fragment_kiln" >
+        <action
+            android:id="@+id/action_kilnFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_kilnFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
 </navigation>

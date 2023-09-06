@@ -15,17 +15,22 @@ import com.example.machines.R
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
 import com.example.machines.data.local.Constants.DEFAULT_VALUE
 import com.example.machines.data.local.Constants.EMPTY
+import com.example.machines.data.local.Constants.KILN_STATUS_KEY
 import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
 import com.example.machines.data.local.Constants.RAW_MILL_STATUS_KEY
 import com.example.machines.data.local.Constants.RH_CLAY_CRUSHER_KEY
+import com.example.machines.data.local.Constants.RH_KILN_KEY
 import com.example.machines.data.local.Constants.RH_LIMESTONE_KEY
 import com.example.machines.data.local.Constants.RH_RAW_MILL_KEY
+import com.example.machines.data.local.RunningStatus
 import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
 import com.example.machines.databinding.FragmentReportBinding
 import com.example.machines.databinding.HeaderFullReportBinding
 import com.example.machines.ui.adapter.ClayCrusherAdapter
+import com.example.machines.ui.adapter.KilnAdapter
 import com.example.machines.ui.adapter.LimestoneAdapter
 import com.example.machines.ui.adapter.RawMillAdapter
 import com.example.machines.utils.UserPreferences
@@ -54,6 +59,7 @@ class ReportFragment : Fragment() {
         updateLimestone()
         updateClayCrusher()
         updateRawMill()
+        updateKiln()
 
         updateMachinesNames()
         switchVisibility()
@@ -66,6 +72,7 @@ class ReportFragment : Fragment() {
             headerLimestone.tvMachineName.text = LimestoneMachine.machineName()
             headerClayCrusher.tvMachineName.text = ClayCrusherMachine.machineName()
             headerRawMill.tvMachineName.text = RawMillMachine.machineName()
+            headerKiln.tvMachineName.text = KilnMachine.machineName()
         }
     }
 
@@ -88,9 +95,14 @@ class ReportFragment : Fragment() {
         viewModel.getAllLimestoneReport().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
+
+                    var runningStatusValue = userPreferences.retrieveData(LIMESTONE_STATUS_KEY)
+                    if (runningStatusValue == EMPTY) {
+                        runningStatusValue = RunningStatus.NO_START.value
+                    }
                     updateRunningStatus(
-                        headerLimestone, rvMachineLimestone, tvRhLimestone, tvNoLimestone,
-                        userPreferences.retrieveData(LIMESTONE_STATUS_KEY)
+                        headerLimestone, rvMachineLimestone, tvRhLimestone,
+                        tvNoLimestone, runningStatusValue
                     )
                 } else {
                     rvMachineLimestone.adapter = LimestoneAdapter(it, null, true)
@@ -105,9 +117,14 @@ class ReportFragment : Fragment() {
         viewModel.getAllClayCrusherItems().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
+
+                    var runningStatusValue = userPreferences.retrieveData(CLAY_CRUSHER_STATUS_KEY)
+                    if (runningStatusValue == EMPTY) {
+                        runningStatusValue = RunningStatus.NO_START.value
+                    }
                     updateRunningStatus(
-                        headerClayCrusher, rvMachineClayCrusher, tvRhClayCrusher, tvNoClay,
-                        userPreferences.retrieveData(CLAY_CRUSHER_STATUS_KEY)
+                        headerClayCrusher, rvMachineClayCrusher, tvRhClayCrusher,
+                        tvNoClay, runningStatusValue
                     )
                 } else {
                     rvMachineClayCrusher.adapter = ClayCrusherAdapter(it, null, true)
@@ -122,13 +139,40 @@ class ReportFragment : Fragment() {
         viewModel.getAllRawMillItems().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
+
+                    var runningStatusValue = userPreferences.retrieveData(RAW_MILL_STATUS_KEY)
+                    if (runningStatusValue == EMPTY) {
+                        runningStatusValue = RunningStatus.NO_START.value
+                    }
                     updateRunningStatus(
-                        headerRawMill, rvMachineRawMill, tvRhRawMill, tvNoRawMill,
-                        userPreferences.retrieveData(RAW_MILL_STATUS_KEY)
+                        headerRawMill, rvMachineRawMill, tvRhRawMill,
+                        tvNoRawMill, runningStatusValue
                     )
                 } else {
                     rvMachineRawMill.adapter = RawMillAdapter(it, null, true)
                     tvRhRawMill.text = userPreferences.retrieveData(RH_RAW_MILL_KEY)
+                }
+            }
+        }
+    }
+
+
+    private fun updateKiln() {
+        viewModel.getAllKilnItems().observe(viewLifecycleOwner) {
+            binding.apply {
+                if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
+
+                    var runningStatusValue = userPreferences.retrieveData(KILN_STATUS_KEY)
+                    if (runningStatusValue == EMPTY) {
+                        runningStatusValue = RunningStatus.NO_START.value
+                    }
+                    updateRunningStatus(
+                        headerKiln, rvMachineKiln, tvRhKiln,
+                        tvNoKiln, runningStatusValue
+                    )
+                } else {
+                    rvMachineKiln.adapter = KilnAdapter(it, null, true)
+                    tvRhKiln.text = userPreferences.retrieveData(RH_KILN_KEY)
                 }
             }
         }

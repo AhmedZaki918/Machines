@@ -20,10 +20,12 @@ import com.example.machines.data.local.Constants.R_H_RESET
 import com.example.machines.data.local.Constants.machineType
 import com.example.machines.data.local.Type
 import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
 import com.example.machines.databinding.FragmentAddBinding
 import com.example.machines.ui.claycrusher.ClayCrusherViewModel
+import com.example.machines.ui.kiln.KilnViewModel
 import com.example.machines.ui.limestone.LimestoneViewModel
 import com.example.machines.ui.raw_mill.RawMillViewModel
 import com.example.machines.utils.MachineUtils.changeThumbTint
@@ -41,6 +43,7 @@ class AddFragment : Fragment() {
     private lateinit var limestoneViewModel: LimestoneViewModel
     private lateinit var clayCrusherViewModel: ClayCrusherViewModel
     private lateinit var rawMillViewModel: RawMillViewModel
+    private lateinit var kilnViewModel: KilnViewModel
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -53,6 +56,7 @@ class AddFragment : Fragment() {
         limestoneViewModel = ViewModelProvider(this)[LimestoneViewModel::class.java]
         clayCrusherViewModel = ViewModelProvider(this)[ClayCrusherViewModel::class.java]
         rawMillViewModel = ViewModelProvider(this)[RawMillViewModel::class.java]
+        kilnViewModel = ViewModelProvider(this)[KilnViewModel::class.java]
 
 
         binding.header.drawScreenHeader(getString(R.string.start_time), this)
@@ -113,6 +117,7 @@ class AddFragment : Fragment() {
             Type.LIMESTONE.value -> performAddItem(startTime, limestoneViewModel)
             Type.CLAY_CRUSHER.value -> performAddItem(startTime, clayCrusherViewModel)
             Type.RAW_MILL.value -> performAddItem(startTime, rawMillViewModel)
+            Type.KILN.value -> performAddItem(startTime, kilnViewModel)
         }
         findNavController().navigateUp()
     }
@@ -138,6 +143,12 @@ class AddFragment : Fragment() {
             rawMillViewModel -> {
                 rawMillViewModel.addRawMill(
                     RawMillMachine(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
+                )
+            }
+
+            kilnViewModel -> {
+                kilnViewModel.addKiln(
+                    KilnMachine(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
                 )
             }
         }

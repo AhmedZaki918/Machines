@@ -114,11 +114,12 @@
         app:layout_constraintTop_toTopOf="@+id/tv_separator_diff"
         tools:ignore="HardcodedText" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/iv_go_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:background="@null"
         android:contentDescription="@string/go_back_content_desc"
         app:layout_constraintBottom_toBottomOf="@+id/tv_screen_name"
         app:layout_constraintStart_toStartOf="parent"

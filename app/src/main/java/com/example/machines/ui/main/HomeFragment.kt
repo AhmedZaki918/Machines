@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.machines.R
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
+import com.example.machines.data.local.Constants.KILN_STATUS_KEY
 import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
 import com.example.machines.data.local.Constants.RAW_MILL_STATUS_KEY
 import com.example.machines.data.local.RunningStatus
@@ -57,6 +58,9 @@ class HomeFragment : Fragment() {
             cvRawMill.click {
                 findNavController().navigate(R.id.action_homeFragment_to_rawMillFragment)
             }
+            cvKiln.click {
+                findNavController().navigate(R.id.action_homeFragment_to_kilnFragment)
+            }
             cvAllMachines.click {
                 findNavController().navigate(R.id.action_homeFragment_to_reportFragment)
             }
@@ -77,6 +81,10 @@ class HomeFragment : Fragment() {
             updateRunningStatus(
                 retrieveData(RAW_MILL_STATUS_KEY),
                 binding.ivRawMillStatus
+            )
+            updateRunningStatus(
+                retrieveData(KILN_STATUS_KEY),
+                binding.ivKilnStatus
             )
         }
     }

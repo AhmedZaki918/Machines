@@ -39,7 +39,7 @@ android {
 }
 
 dependencies {
-    def nav_version = "2.7.0"
+    def nav_version = "2.7.1"
     def room = "2.5.2"
 
     implementation 'androidx.core:core-ktx:1.10.1'
@@ -65,4 +65,7 @@ dependencies {
 
     // Coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    // Splash Screen
+    implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
 }

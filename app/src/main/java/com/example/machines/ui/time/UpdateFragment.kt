@@ -16,15 +16,18 @@ import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.SEVEN_AM
 import com.example.machines.data.local.Constants.clayCrusher
+import com.example.machines.data.local.Constants.kiln
 import com.example.machines.data.local.Constants.limestone
 import com.example.machines.data.local.Constants.machineType
 import com.example.machines.data.local.Constants.rawMill
 import com.example.machines.data.local.Type
 import com.example.machines.data.model.ClayCrusherMachine
+import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
 import com.example.machines.databinding.FragmentUpdateBinding
 import com.example.machines.ui.claycrusher.ClayCrusherViewModel
+import com.example.machines.ui.kiln.KilnViewModel
 import com.example.machines.ui.limestone.LimestoneViewModel
 import com.example.machines.ui.raw_mill.RawMillViewModel
 import com.example.machines.utils.MachineUtils.changeThumbTint
@@ -39,10 +42,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class UpdateFragment : Fragment() {
 
     private lateinit var binding: FragmentUpdateBinding
-
     private lateinit var limestoneViewModel: LimestoneViewModel
     private lateinit var clayCruhViewModel: ClayCrusherViewModel
     private lateinit var rawMillViewModel: RawMillViewModel
+    private lateinit var kilnViewModel: KilnViewModel
 
     private var reason: String = ""
     private var endTime: String = ""
@@ -56,13 +59,17 @@ class UpdateFragment : Fragment() {
         binding = FragmentUpdateBinding.inflate(inflater, container, false)
 
         binding.header.drawScreenHeader(getString(R.string.stop_time), this)
+        updateUi()
+        setClickListeners()
+        return binding.root
+    }
+
+
+    private fun updateUi(){
         limestoneViewModel = ViewModelProvider(this)[LimestoneViewModel::class.java]
         clayCruhViewModel = ViewModelProvider(this)[ClayCrusherViewModel::class.java]
         rawMillViewModel = ViewModelProvider(this)[RawMillViewModel::class.java]
-
-
-        setClickListeners()
-        return binding.root
+        kilnViewModel = ViewModelProvider(this)[KilnViewModel::class.java]
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -125,6 +132,7 @@ class UpdateFragment : Fragment() {
             Type.LIMESTONE.value -> updateMachine(time, limestone.startTime, limestoneViewModel)
             Type.CLAY_CRUSHER.value -> updateMachine(time, clayCrusher.startTime, clayCruhViewModel)
             Type.RAW_MILL.value -> updateMachine(time, rawMill.startTime, rawMillViewModel)
+            Type.KILN.value -> updateMachine(time, kiln.startTime, kilnViewModel)
         }
         findNavController().navigateUp()
     }
@@ -143,7 +151,7 @@ class UpdateFragment : Fragment() {
             clayCruhViewModel -> {
                 clayCruhViewModel.updateClayCrusher(
                     ClayCrusherMachine(
-                        clayCrusher.id, updatedStartTime, time, reason,
+                        clayCrusher.id, startTime, time, reason,
                         differentInTwoTimes(updatedStartTime, endTime)
                     )
                 )
@@ -152,7 +160,7 @@ class UpdateFragment : Fragment() {
             limestoneViewModel -> {
                 limestoneViewModel.updateLimestone(
                     LimestoneMachine(
-                        limestone.id, updatedStartTime, time, reason,
+                        limestone.id, startTime, time, reason,
                         differentInTwoTimes(updatedStartTime, endTime)
                     )
                 )
@@ -161,7 +169,16 @@ class UpdateFragment : Fragment() {
             rawMillViewModel -> {
                 rawMillViewModel.updateRawMill(
                     RawMillMachine(
-                        rawMill.id, updatedStartTime, time, reason,
+                        rawMill.id, startTime, time, reason,
+                        differentInTwoTimes(updatedStartTime, endTime)
+                    )
+                )
+            }
+
+            kilnViewModel -> {
+                kilnViewModel.updateKiln(
+                    KilnMachine(
+                        kiln.id, startTime, time, reason,
                         differentInTwoTimes(updatedStartTime, endTime)
                     )
                 )

@@ -205,6 +205,74 @@
             tools:text="13:15" />
 
 
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:alpha="0.1"
+            android:background="@color/offWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rh_raw_mill" />
+
+
+        <include
+            android:id="@+id/header_kiln"
+            layout="@layout/header_full_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view3" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_machine_kiln"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_kiln"
+            tools:itemCount="3"
+            tools:listitem="@layout/list_item_report" />
+
+
+        <TextView
+            android:id="@+id/tv_no_kiln"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:text="@string/no_stop"
+            android:textAlignment="center"
+            android:textColor="@color/offWhite"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/tv_rh_kiln"
+            app:layout_constraintStart_toStartOf="@id/header_kiln"
+            app:layout_constraintTop_toBottomOf="@+id/header_kiln" />
+
+
+        <TextView
+            android:id="@+id/tv_rh_kiln"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/red"
+            app:layout_constraintEnd_toEndOf="@+id/rv_machine_kiln"
+            app:layout_constraintTop_toBottomOf="@+id/rv_machine_kiln"
+            tools:text="13:15" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
