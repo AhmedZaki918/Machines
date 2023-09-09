@@ -13,20 +13,7 @@ class KilnViewModel @Inject constructor(
     private val repo: KilnRepo
 ) : ViewModel() {
 
-
-    fun addKiln(machine: KilnMachine) {
-        viewModelScope.launch {
-            repo.addKilnItem(machine)
-        }
-    }
-
     fun getAllKilnItems() = repo.getKilnItems()
-
-    fun updateKiln(machine: KilnMachine) {
-        viewModelScope.launch {
-            repo.updateKilnItem(machine)
-        }
-    }
 
     fun deleteKiln(machine: KilnMachine) {
         viewModelScope.launch {

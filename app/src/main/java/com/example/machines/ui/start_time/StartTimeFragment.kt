@@ -1,4 +1,4 @@
-package com.example.machines.ui.time
+package com.example.machines.ui.start_time
 
 import android.os.Build
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.machines.R
@@ -19,15 +18,12 @@ import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.R_H_RESET
 import com.example.machines.data.local.Constants.machineType
 import com.example.machines.data.local.Type
+import com.example.machines.data.model.CementMillMachine1
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
 import com.example.machines.data.model.RawMillMachine
-import com.example.machines.databinding.FragmentAddBinding
-import com.example.machines.ui.claycrusher.ClayCrusherViewModel
-import com.example.machines.ui.kiln.KilnViewModel
-import com.example.machines.ui.limestone.LimestoneViewModel
-import com.example.machines.ui.raw_mill.RawMillViewModel
+import com.example.machines.databinding.FragmentStartTimeBinding
 import com.example.machines.utils.MachineUtils.changeThumbTint
 import com.example.machines.utils.click
 import com.example.machines.utils.drawScreenHeader
@@ -36,14 +32,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class AddFragment : Fragment() {
+class StartTimeFragment : Fragment() {
 
-    private lateinit var binding: FragmentAddBinding
-
-    private lateinit var limestoneViewModel: LimestoneViewModel
-    private lateinit var clayCrusherViewModel: ClayCrusherViewModel
-    private lateinit var rawMillViewModel: RawMillViewModel
-    private lateinit var kilnViewModel: KilnViewModel
+    private lateinit var binding: FragmentStartTimeBinding
+    private lateinit var viewModel: StartTimeViewModel
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -51,14 +43,9 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddBinding.inflate(inflater, container, false)
+        binding = FragmentStartTimeBinding.inflate(inflater, container, false)
 
-        limestoneViewModel = ViewModelProvider(this)[LimestoneViewModel::class.java]
-        clayCrusherViewModel = ViewModelProvider(this)[ClayCrusherViewModel::class.java]
-        rawMillViewModel = ViewModelProvider(this)[RawMillViewModel::class.java]
-        kilnViewModel = ViewModelProvider(this)[KilnViewModel::class.java]
-
-
+        viewModel = ViewModelProvider(this)[StartTimeViewModel::class.java]
         binding.header.drawScreenHeader(getString(R.string.start_time), this)
         setClickListeners()
         return binding.root
@@ -99,8 +86,8 @@ class AddFragment : Fragment() {
             requireContext().toast(R.string.one_field_is_required)
         } else {
             val startTime = hours + COLUMN + minutes
-            if (runningStatus) addOneItem(RUNNING)
-            else addOneItem(startTime)
+            if (runningStatus) addStartTime(RUNNING)
+            else addStartTime(startTime)
         }
     }
 
@@ -112,45 +99,38 @@ class AddFragment : Fragment() {
     }
 
 
-    private fun addOneItem(startTime: String) {
+    private fun addStartTime(startTime: String) {
         when (machineType) {
-            Type.LIMESTONE.value -> performAddItem(startTime, limestoneViewModel)
-            Type.CLAY_CRUSHER.value -> performAddItem(startTime, clayCrusherViewModel)
-            Type.RAW_MILL.value -> performAddItem(startTime, rawMillViewModel)
-            Type.KILN.value -> performAddItem(startTime, kilnViewModel)
-        }
-        findNavController().navigateUp()
-    }
-
-
-    private fun performAddItem(
-        startTime: String,
-        viewModel: ViewModel
-    ) {
-        when (viewModel) {
-            limestoneViewModel -> {
-                limestoneViewModel.addLimestone(
+            Type.LIMESTONE.value -> {
+                viewModel.addLimestone(
                     LimestoneMachine(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
                 )
             }
 
-            clayCrusherViewModel -> {
-                clayCrusherViewModel.addClayCrusher(
+            Type.CLAY_CRUSHER.value -> {
+                viewModel.addClayCrusher(
                     ClayCrusherMachine(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
                 )
             }
 
-            rawMillViewModel -> {
-                rawMillViewModel.addRawMill(
+            Type.RAW_MILL.value -> {
+                viewModel.addRawMill(
                     RawMillMachine(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
                 )
             }
 
-            kilnViewModel -> {
-                kilnViewModel.addKiln(
+            Type.KILN.value -> {
+                viewModel.addKiln(
                     KilnMachine(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
                 )
             }
+
+            Type.CEMENT_MILL_ONE.value -> {
+                viewModel.addCementMillOne(
+                    CementMillMachine1(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
+                )
+            }
         }
+        findNavController().navigateUp()
     }
 }

@@ -13,19 +13,7 @@ class ClayCrusherViewModel @Inject constructor(
     private val repo: ClayCrusherRepo
 ) : ViewModel() {
 
-    fun addClayCrusher(machine: ClayCrusherMachine) {
-        viewModelScope.launch {
-            repo.addClayCrusherItem(machine)
-        }
-    }
-
     fun getAllClayCrusherItems() = repo.getClayCrusherItems()
-
-    fun updateClayCrusher(machine: ClayCrusherMachine) {
-        viewModelScope.launch {
-            repo.updateClayCrusherItem(machine)
-        }
-    }
 
     fun deleteClayCrusher(machine: ClayCrusherMachine) {
         viewModelScope.launch {

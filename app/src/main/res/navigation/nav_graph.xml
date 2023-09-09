@@ -51,17 +51,20 @@
         <action
             android:id="@+id/action_homeFragment_to_kilnFragment"
             app:destination="@id/kilnFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cementMillOneFragment"
+            app:destination="@id/cementMillOneFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.machines.ui.time.AddFragment"
+        android:name="com.example.machines.ui.start_time.StartTimeFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_start_time" />
     <fragment
         android:id="@+id/updateFragment"
-        android:name="com.example.machines.ui.time.UpdateFragment"
+        android:name="com.example.machines.ui.stop_time.StopTimeFragment"
         android:label="fragment_update"
-        tools:layout="@layout/fragment_update" />
+        tools:layout="@layout/fragment_stop_time" />
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.example.machines.ui.report.ReportFragment"
@@ -90,5 +93,17 @@
         <action
             android:id="@+id/action_kilnFragment_to_updateFragment"
             app:destination="@id/updateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cementMillOneFragment"
+        android:name="com.example.machines.ui.cement_mill_one.CementMillOneFragment"
+        android:label="fragment_cement_mill_one"
+        tools:layout="@layout/fragment_cement_mill_one" >
+        <action
+            android:id="@+id/action_cementMillOneFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_cementMillOneFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
 </navigation>

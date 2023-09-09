@@ -13,19 +13,7 @@ class RawMillViewModel @Inject constructor(
     private val repo: RawMillRepo
 ) : ViewModel() {
 
-    fun addRawMill(machine: RawMillMachine) {
-        viewModelScope.launch {
-            repo.addRawMillItem(machine)
-        }
-    }
-
     fun getAllRawMillItems() = repo.getRawMillItems()
-
-    fun updateRawMill(machine: RawMillMachine) {
-        viewModelScope.launch {
-            repo.updateRawMillItem(machine)
-        }
-    }
 
     fun deleteRawMill(machine: RawMillMachine) {
         viewModelScope.launch {

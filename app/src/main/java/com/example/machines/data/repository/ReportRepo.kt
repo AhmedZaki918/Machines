@@ -2,6 +2,7 @@ package com.example.machines.data.repository
 
 import androidx.lifecycle.LiveData
 import com.example.machines.data.local.MachineDao
+import com.example.machines.data.model.CementMillMachine1
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -26,5 +27,9 @@ class ReportRepo @Inject constructor(
 
     fun getKilnReport(): LiveData<List<KilnMachine>>{
         return dao.getAllKiln()
+    }
+
+    fun getCementMillReport(): LiveData<List<CementMillMachine1>> {
+        return dao.getAllCementMillOne()
     }
 }

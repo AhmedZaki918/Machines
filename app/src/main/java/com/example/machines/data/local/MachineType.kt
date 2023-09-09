@@ -4,5 +4,6 @@ enum class Type(val value: String) {
     LIMESTONE("Limestone"),
     CLAY_CRUSHER("ClayCrusher"),
     RAW_MILL("RawMill"),
-    KILN("kiln")
+    KILN("Kiln"),
+    CEMENT_MILL_ONE("CementMillOne")
 }

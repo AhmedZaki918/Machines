@@ -14,4 +14,5 @@ class ReportViewModel @Inject constructor(
     fun getAllClayCrusherItems() = repo.getClayCrusherReport()
     fun getAllRawMillItems() = repo.getRawMillReport()
     fun getAllKilnItems() = repo.getKilnReport()
+    fun getAllCementMillOne() = repo.getCementMillReport()
 }
