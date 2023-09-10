@@ -3,6 +3,7 @@ package com.example.machines.ui.stop_time
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.machines.data.model.CementMillMachine1
+import com.example.machines.data.model.CementMillMachine2
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -44,6 +45,12 @@ class StopTimeViewModel @Inject constructor(
     fun updateCementMillOne(machine: CementMillMachine1){
         viewModelScope.launch {
             repo.updateCementMillItem(machine)
+        }
+    }
+
+    fun updateCementMillTwo(machine: CementMillMachine2){
+        viewModelScope.launch {
+            repo.updateCementTwoItem(machine)
         }
     }
 }

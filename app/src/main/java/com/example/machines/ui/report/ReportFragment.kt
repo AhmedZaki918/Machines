@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.machines.R
 import com.example.machines.data.local.Constants.CEMENT_MILL_1_STATUS_KEY
+import com.example.machines.data.local.Constants.CEMENT_MILL_2_STATUS_KEY
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
 import com.example.machines.data.local.Constants.DEFAULT_VALUE
 import com.example.machines.data.local.Constants.EMPTY
@@ -18,12 +19,14 @@ import com.example.machines.data.local.Constants.KILN_STATUS_KEY
 import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
 import com.example.machines.data.local.Constants.RAW_MILL_STATUS_KEY
 import com.example.machines.data.local.Constants.RH_CEMENT_MILL_1_KEY
+import com.example.machines.data.local.Constants.RH_CEMENT_MILL_2_KEY
 import com.example.machines.data.local.Constants.RH_CLAY_CRUSHER_KEY
 import com.example.machines.data.local.Constants.RH_KILN_KEY
 import com.example.machines.data.local.Constants.RH_LIMESTONE_KEY
 import com.example.machines.data.local.Constants.RH_RAW_MILL_KEY
 import com.example.machines.data.local.RunningStatus
 import com.example.machines.data.model.CementMillMachine1
+import com.example.machines.data.model.CementMillMachine2
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -31,6 +34,7 @@ import com.example.machines.data.model.RawMillMachine
 import com.example.machines.databinding.FragmentReportBinding
 import com.example.machines.databinding.ListItemMachineReportBinding
 import com.example.machines.ui.adapter.CementMillOneAdapter
+import com.example.machines.ui.adapter.CementMillTwoAdapter
 import com.example.machines.ui.adapter.ClayCrusherAdapter
 import com.example.machines.ui.adapter.KilnAdapter
 import com.example.machines.ui.adapter.LimestoneAdapter
@@ -58,15 +62,19 @@ class ReportFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ReportViewModel::class.java]
         userPreferences = UserPreferences(requireContext())
 
+        updateUi()
+        switchVisibility()
+        return binding.root
+    }
+
+    private fun updateUi() {
         updateLimestone()
         updateClayCrusher()
         updateRawMill()
         updateKiln()
         updateCementMillOne()
-
+        updateCementMillTwo()
         updateMachinesNames()
-        switchVisibility()
-        return binding.root
     }
 
 
@@ -77,6 +85,7 @@ class ReportFragment : Fragment() {
             headerRawMill.tvMachineName.text = RawMillMachine.machineName()
             headerKiln.tvMachineName.text = KilnMachine.machineName()
             headerCementMill1.tvMachineName.text = CementMillMachine1.machineName()
+            headerCementMill2.tvMachineName.text = CementMillMachine2.machineName()
         }
     }
 
@@ -188,6 +197,26 @@ class ReportFragment : Fragment() {
                     headerCementMill1.apply {
                         rvMachine.adapter = CementMillOneAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_CEMENT_MILL_1_KEY)
+                    }
+                }
+            }
+        }
+    }
+
+
+    private fun updateCementMillTwo() {
+        viewModel.getAllCementMillTwo().observe(viewLifecycleOwner) {
+            binding.apply {
+                if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
+                    var runningStatusValue = userPreferences.retrieveData(CEMENT_MILL_2_STATUS_KEY)
+                    if (runningStatusValue == EMPTY) {
+                        runningStatusValue = RunningStatus.NO_START.value
+                    }
+                    updateRunningStatus(headerCementMill2, runningStatusValue)
+                } else {
+                    headerCementMill2.apply {
+                        rvMachine.adapter = CementMillTwoAdapter(it, null, true)
+                        tvRhValue.text = userPreferences.retrieveData(RH_CEMENT_MILL_2_KEY)
                     }
                 }
             }

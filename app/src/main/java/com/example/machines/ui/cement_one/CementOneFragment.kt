@@ -1,4 +1,4 @@
-package com.example.machines.ui.cement_mill_one
+package com.example.machines.ui.cement_one
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.machines.R
-import com.example.machines.data.local.Constants
 import com.example.machines.data.local.Constants.CEMENT_MILL_1_STATUS_KEY
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.DEFAULT_HOUR
@@ -23,14 +22,10 @@ import com.example.machines.data.local.Constants.machineType
 import com.example.machines.data.local.RunningStatus
 import com.example.machines.data.local.Type
 import com.example.machines.data.model.CementMillMachine1
-import com.example.machines.data.model.LimestoneMachine
-import com.example.machines.databinding.FragmentCementMillOneBinding
+import com.example.machines.databinding.FragmentCementOneBinding
 import com.example.machines.databinding.HeaderBinding
 import com.example.machines.ui.Time
 import com.example.machines.ui.adapter.CementMillOneAdapter
-import com.example.machines.ui.adapter.LimestoneAdapter
-import com.example.machines.ui.limestone.LimestoneViewModel
-import com.example.machines.utils.MachineUtils
 import com.example.machines.utils.MachineUtils.updateNotRunningHours
 import com.example.machines.utils.OnItemClick
 import com.example.machines.utils.UserPreferences
@@ -43,10 +38,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class CementMillOneFragment : Fragment(),OnItemClick {
+class CementOneFragment : Fragment(),OnItemClick {
 
-    private lateinit var binding: FragmentCementMillOneBinding
-    private lateinit var viewModel: CementMillOneViewModel
+    private lateinit var binding: FragmentCementOneBinding
+    private lateinit var viewModel: CementOneViewModel
     private lateinit var userPreferences: UserPreferences
     private var rhTotal: Time? = null
 
@@ -54,10 +49,10 @@ class CementMillOneFragment : Fragment(),OnItemClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCementMillOneBinding.inflate(inflater, container, false)
+        binding = FragmentCementOneBinding.inflate(inflater, container, false)
 
         binding.header.drawScreenHeader(getString(R.string.cement_mill_1), this)
-        viewModel = ViewModelProvider(this)[CementMillOneViewModel::class.java]
+        viewModel = ViewModelProvider(this)[CementOneViewModel::class.java]
         userPreferences = UserPreferences(requireContext())
 
         viewModel.getAllCementMillOneItems().observe(viewLifecycleOwner) { items ->

@@ -13,4 +13,10 @@ data class CementMillMachine2(
     val stopTime: String = "",
     val reason: String = "",
     val rh: String = ""
-)
+){
+    companion object {
+        fun machineName(): String {
+            return "Cement Mill 2"
+        }
+    }
+}

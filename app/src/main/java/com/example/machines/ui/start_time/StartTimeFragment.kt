@@ -19,6 +19,7 @@ import com.example.machines.data.local.Constants.R_H_RESET
 import com.example.machines.data.local.Constants.machineType
 import com.example.machines.data.local.Type
 import com.example.machines.data.model.CementMillMachine1
+import com.example.machines.data.model.CementMillMachine2
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -128,6 +129,12 @@ class StartTimeFragment : Fragment() {
             Type.CEMENT_MILL_ONE.value -> {
                 viewModel.addCementMillOne(
                     CementMillMachine1(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
+                )
+            }
+
+            Type.CEMENT_MILL_TWO.value -> {
+                viewModel.addCementMillTwo(
+                    CementMillMachine2(0, startTime, DEFAULT_VALUE, EMPTY, R_H_RESET)
                 )
             }
         }

@@ -5,5 +5,6 @@ enum class Type(val value: String) {
     CLAY_CRUSHER("ClayCrusher"),
     RAW_MILL("RawMill"),
     KILN("Kiln"),
-    CEMENT_MILL_ONE("CementMillOne")
+    CEMENT_MILL_ONE("CementMillOne"),
+    CEMENT_MILL_TWO("CementMillTwo")
 }

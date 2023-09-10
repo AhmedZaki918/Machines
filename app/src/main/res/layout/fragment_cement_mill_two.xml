@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:fillViewport="true"
     android:paddingBottom="16dp"
-    android:layout_height="match_parent"
-    tools:context=".ui.cement_mill_one.CementMillOneFragment">
+    tools:context=".ui.cement_two.CementMillTwoFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,17 +89,15 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_cement_mill_1"
+            android:id="@+id/rv_cement_mill_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_start"
-            app:layout_constraintVertical_bias="0.0"
             tools:itemCount="3"
             tools:listitem="@layout/details" />
 
@@ -132,6 +130,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </ScrollView>
