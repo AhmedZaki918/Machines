@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.machines.data.model.CementMillMachine1
 import com.example.machines.data.model.CementMillMachine2
+import com.example.machines.data.model.CementMillMachine3
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -51,6 +52,12 @@ class StartTimeViewModel @Inject constructor(
     fun addCementMillTwo(machine: CementMillMachine2){
         viewModelScope.launch {
             repo.addCementTwoItem(machine)
+        }
+    }
+
+    fun addCementMillThree(machine: CementMillMachine3){
+        viewModelScope.launch {
+            repo.addCementThreeItem(machine)
         }
     }
 }

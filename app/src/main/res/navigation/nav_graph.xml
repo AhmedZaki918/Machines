@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_homeFragment_to_cementMillTwoFragment"
             app:destination="@id/cementMillTwoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cementMillThreeFragment"
+            app:destination="@id/cementMillThreeFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -120,5 +123,17 @@
         <action
             android:id="@+id/action_cementMillTwoFragment_to_updateFragment"
             app:destination="@id/updateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cementMillThreeFragment"
+        android:name="com.example.machines.ui.cement_three.CementMillThreeFragment"
+        android:label="fragment_cement_mill_three"
+        tools:layout="@layout/fragment_cement_mill_three" >
+        <action
+            android:id="@+id/action_cementMillThreeFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_cementMillThreeFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
 </navigation>

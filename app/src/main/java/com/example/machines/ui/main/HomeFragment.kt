@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.machines.R
 import com.example.machines.data.local.Constants.CEMENT_MILL_1_STATUS_KEY
 import com.example.machines.data.local.Constants.CEMENT_MILL_2_STATUS_KEY
+import com.example.machines.data.local.Constants.CEMENT_MILL_3_STATUS_KEY
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_STATUS_KEY
 import com.example.machines.data.local.Constants.KILN_STATUS_KEY
 import com.example.machines.data.local.Constants.LIMESTONE_STATUS_KEY
@@ -69,6 +70,9 @@ class HomeFragment : Fragment() {
             cvCementMill2.click {
                 findNavController().navigate(R.id.action_homeFragment_to_cementMillTwoFragment)
             }
+            cvCementMill3.click {
+                findNavController().navigate(R.id.action_homeFragment_to_cementMillThreeFragment)
+            }
             cvAllMachines.click {
                 findNavController().navigate(R.id.action_homeFragment_to_reportFragment)
             }
@@ -101,6 +105,10 @@ class HomeFragment : Fragment() {
             updateRunningStatus(
                 retrieveData(CEMENT_MILL_2_STATUS_KEY),
                 binding.ivCement2Status
+            )
+            updateRunningStatus(
+                retrieveData(CEMENT_MILL_3_STATUS_KEY),
+                binding.ivCement3Status
             )
         }
     }

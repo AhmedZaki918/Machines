@@ -9,12 +9,14 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.machines.data.local.Constants.CEMENT_MILL_1_TABLE
 import com.example.machines.data.local.Constants.CEMENT_MILL_2_TABLE
+import com.example.machines.data.local.Constants.CEMENT_MILL_3_TABLE
 import com.example.machines.data.local.Constants.CLAY_CRUSHER_TABLE
 import com.example.machines.data.local.Constants.KILN_TABLE
 import com.example.machines.data.local.Constants.LIMESTONE_TABLE
 import com.example.machines.data.local.Constants.RAW_MILL_TABLE
 import com.example.machines.data.model.CementMillMachine1
 import com.example.machines.data.model.CementMillMachine2
+import com.example.machines.data.model.CementMillMachine3
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -105,4 +107,18 @@ interface MachineDao {
 
     @Delete
     suspend fun deleteCementMillTwo(cementMillOne: CementMillMachine2)
+
+
+    // Cement Mill 3 Machine
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addCementMillThree(cementMillOne: CementMillMachine3)
+
+    @Query("SELECT * FROM $CEMENT_MILL_3_TABLE")
+    fun getAllCementMillThree(): LiveData<List<CementMillMachine3>>
+
+    @Update
+    suspend fun updateCementMillThree(cementMillOne: CementMillMachine3)
+
+    @Delete
+    suspend fun deleteCementMillThree(cementMillOne: CementMillMachine3)
 }

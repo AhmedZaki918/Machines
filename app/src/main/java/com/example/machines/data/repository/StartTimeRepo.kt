@@ -3,6 +3,7 @@ package com.example.machines.data.repository
 import com.example.machines.data.local.MachineDao
 import com.example.machines.data.model.CementMillMachine1
 import com.example.machines.data.model.CementMillMachine2
+import com.example.machines.data.model.CementMillMachine3
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -34,5 +35,9 @@ class StartTimeRepo @Inject constructor(
 
     suspend fun addCementTwoItem(cementMill: CementMillMachine2){
         dao.addCementMillTwo(cementMill)
+    }
+
+    suspend fun addCementThreeItem(cementMill: CementMillMachine3){
+        dao.addCementMillThree(cementMill)
     }
 }

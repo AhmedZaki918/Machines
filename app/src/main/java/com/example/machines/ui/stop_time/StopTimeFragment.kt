@@ -18,6 +18,7 @@ import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.SEVEN_AM
 import com.example.machines.data.local.Constants.cementMill_1
 import com.example.machines.data.local.Constants.cementMill_2
+import com.example.machines.data.local.Constants.cementMill_3
 import com.example.machines.data.local.Constants.clayCrusher
 import com.example.machines.data.local.Constants.kiln
 import com.example.machines.data.local.Constants.limestone
@@ -26,6 +27,7 @@ import com.example.machines.data.local.Constants.rawMill
 import com.example.machines.data.local.Type
 import com.example.machines.data.model.CementMillMachine1
 import com.example.machines.data.model.CementMillMachine2
+import com.example.machines.data.model.CementMillMachine3
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -174,6 +176,15 @@ class StopTimeFragment : Fragment() {
                     CementMillMachine2(
                         cementMill_2.id, cementMill_2.startTime, time, reason,
                         differentInTwoTimes(updateStopTime(cementMill_2.startTime), endTime)
+                    )
+                )
+            }
+
+            Type.CEMENT_MILL_THREE.value -> {
+                viewModel.updateCementMillThree(
+                    CementMillMachine3(
+                        cementMill_3.id, cementMill_3.startTime, time, reason,
+                        differentInTwoTimes(updateStopTime(cementMill_3.startTime), endTime)
                     )
                 )
             }

@@ -95,6 +95,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_cement_mill_1" />
 
+
+        <include
+            android:id="@+id/header_cement_mill_3"
+            layout="@layout/list_item_machine_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_cement_mill_2" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

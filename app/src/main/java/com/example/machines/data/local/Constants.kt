@@ -2,6 +2,7 @@ package com.example.machines.data.local
 
 import com.example.machines.data.model.CementMillMachine1
 import com.example.machines.data.model.CementMillMachine2
+import com.example.machines.data.model.CementMillMachine3
 import com.example.machines.data.model.ClayCrusherMachine
 import com.example.machines.data.model.KilnMachine
 import com.example.machines.data.model.LimestoneMachine
@@ -15,6 +16,7 @@ object Constants {
     var kiln = KilnMachine()
     var cementMill_1 = CementMillMachine1()
     var cementMill_2 = CementMillMachine2()
+    var cementMill_3 = CementMillMachine3()
 
     const val DEFAULT_VALUE = "00:00"
     const val DEFAULT_HOUR = "0"
@@ -36,6 +38,7 @@ object Constants {
     const val RH_KILN_KEY = "kiln_key"
     const val RH_CEMENT_MILL_1_KEY = "cement_mill_1_key"
     const val RH_CEMENT_MILL_2_KEY = "cement_mill_2_key"
+    const val RH_CEMENT_MILL_3_KEY = "cement_mill_3_key"
 
     const val LIMESTONE_TABLE = "Limestone"
     const val CLAY_CRUSHER_TABLE = "ClayCrusher"
@@ -51,6 +54,7 @@ object Constants {
     const val KILN_STATUS_KEY = "kiln_status_key"
     const val CEMENT_MILL_1_STATUS_KEY = "cement_mill_1_status_key"
     const val CEMENT_MILL_2_STATUS_KEY = "cement_mill_2_status_key"
+    const val CEMENT_MILL_3_STATUS_KEY = "cement_mill_3_status_key"
 
     var machineType = ""
 }
