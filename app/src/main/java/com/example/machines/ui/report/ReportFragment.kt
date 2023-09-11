@@ -113,6 +113,8 @@ class ReportFragment : Fragment() {
     private fun updateLimestone() {
         viewModel.getAllLimestoneReport().observe(viewLifecycleOwner) {
             binding.apply {
+                headerLimestone.progressBar.visibility = INVISIBLE
+
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     var runningStatusValue = userPreferences.retrieveData(LIMESTONE_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
@@ -121,6 +123,7 @@ class ReportFragment : Fragment() {
                     updateRunningStatus(headerLimestone, runningStatusValue)
                 } else {
                     headerLimestone.apply {
+                        rvMachine.visibility = VISIBLE
                         rvMachine.adapter = LimestoneAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_LIMESTONE_KEY)
                     }
@@ -133,6 +136,8 @@ class ReportFragment : Fragment() {
     private fun updateClayCrusher() {
         viewModel.getAllClayCrusherItems().observe(viewLifecycleOwner) {
             binding.apply {
+                headerClayCrusher.progressBar.visibility = INVISIBLE
+
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     var runningStatusValue = userPreferences.retrieveData(CLAY_CRUSHER_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
@@ -141,6 +146,7 @@ class ReportFragment : Fragment() {
                     updateRunningStatus(headerClayCrusher, runningStatusValue)
                 } else {
                     headerClayCrusher.apply {
+                        rvMachine.visibility = VISIBLE
                         rvMachine.adapter = ClayCrusherAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_CLAY_CRUSHER_KEY)
                     }
@@ -153,6 +159,8 @@ class ReportFragment : Fragment() {
     private fun updateRawMill() {
         viewModel.getAllRawMillItems().observe(viewLifecycleOwner) {
             binding.apply {
+                headerRawMill.progressBar.visibility = INVISIBLE
+
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     var runningStatusValue = userPreferences.retrieveData(RAW_MILL_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
@@ -161,6 +169,7 @@ class ReportFragment : Fragment() {
                     updateRunningStatus(headerRawMill, runningStatusValue)
                 } else {
                     headerRawMill.apply {
+                        rvMachine.visibility = VISIBLE
                         rvMachine.adapter = RawMillAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_RAW_MILL_KEY)
                     }
@@ -173,6 +182,8 @@ class ReportFragment : Fragment() {
     private fun updateKiln() {
         viewModel.getAllKilnItems().observe(viewLifecycleOwner) {
             binding.apply {
+                headerKiln.progressBar.visibility = INVISIBLE
+
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     var runningStatusValue = userPreferences.retrieveData(KILN_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
@@ -181,6 +192,7 @@ class ReportFragment : Fragment() {
                     updateRunningStatus(headerKiln, runningStatusValue)
                 } else {
                     headerKiln.apply {
+                        rvMachine.visibility = VISIBLE
                         rvMachine.adapter = KilnAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_KILN_KEY)
                     }
@@ -193,6 +205,8 @@ class ReportFragment : Fragment() {
     private fun updateCementMillOne() {
         viewModel.getAllCementMillOne().observe(viewLifecycleOwner) {
             binding.apply {
+                headerCementMill1.progressBar.visibility = INVISIBLE
+
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     var runningStatusValue = userPreferences.retrieveData(CEMENT_MILL_1_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
@@ -201,6 +215,7 @@ class ReportFragment : Fragment() {
                     updateRunningStatus(headerCementMill1, runningStatusValue)
                 } else {
                     headerCementMill1.apply {
+                        rvMachine.visibility = VISIBLE
                         rvMachine.adapter = CementMillOneAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_CEMENT_MILL_1_KEY)
                     }
@@ -213,6 +228,8 @@ class ReportFragment : Fragment() {
     private fun updateCementMillTwo() {
         viewModel.getAllCementMillTwo().observe(viewLifecycleOwner) {
             binding.apply {
+                headerCementMill2.progressBar.visibility = INVISIBLE
+
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     var runningStatusValue = userPreferences.retrieveData(CEMENT_MILL_2_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
@@ -221,6 +238,7 @@ class ReportFragment : Fragment() {
                     updateRunningStatus(headerCementMill2, runningStatusValue)
                 } else {
                     headerCementMill2.apply {
+                        rvMachine.visibility = VISIBLE
                         rvMachine.adapter = CementMillTwoAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_CEMENT_MILL_2_KEY)
                     }
@@ -233,6 +251,8 @@ class ReportFragment : Fragment() {
     private fun updateCementMillThree() {
         viewModel.getAllCementMillThree().observe(viewLifecycleOwner) {
             binding.apply {
+                headerCementMill3.progressBar.visibility = INVISIBLE
+
                 if (it.isEmpty() || it[0].startTime != EMPTY && it[0].stopTime == DEFAULT_VALUE) {
                     var runningStatusValue = userPreferences.retrieveData(CEMENT_MILL_3_STATUS_KEY)
                     if (runningStatusValue == EMPTY) {
@@ -241,6 +261,7 @@ class ReportFragment : Fragment() {
                     updateRunningStatus(headerCementMill3, runningStatusValue)
                 } else {
                     headerCementMill3.apply {
+                        rvMachine.visibility = VISIBLE
                         rvMachine.adapter = CementMillThreeAdapter(it, null, true)
                         tvRhValue.text = userPreferences.retrieveData(RH_CEMENT_MILL_3_KEY)
                     }
