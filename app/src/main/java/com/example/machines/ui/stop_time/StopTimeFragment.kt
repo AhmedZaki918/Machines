@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.machines.R
 import com.example.machines.data.local.Constants.COLUMN
+import com.example.machines.data.local.Constants.HOURS
+import com.example.machines.data.local.Constants.MINUTES
 import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.SEVEN_AM
 import com.example.machines.data.local.Constants.cementMill_1
@@ -34,6 +36,7 @@ import com.example.machines.utils.click
 import com.example.machines.utils.differentInTwoTimes
 import com.example.machines.utils.drawScreenHeader
 import com.example.machines.utils.toast
+import com.example.machines.utils.validateHoursOrMinutes
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -56,6 +59,11 @@ class StopTimeFragment : Fragment() {
         binding.header.drawScreenHeader(getString(R.string.stop_time), this)
         viewModel = ViewModelProvider(this)[StopTimeViewModel::class.java]
         setClickListeners()
+
+        requireContext().apply {
+            validateHoursOrMinutes(binding.etHours, HOURS)
+            validateHoursOrMinutes(binding.etMinutes, MINUTES)
+        }
         return binding.root
     }
 

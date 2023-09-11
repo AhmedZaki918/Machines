@@ -36,5 +36,7 @@
     <string name="full_report">Report</string>
     <string name="no_stop">No Stop</string>
     <string name="home">Home</string>
+    <string name="invalid_hour_format">Invalid hour format</string>
+    <string name="invalid_minute_format">Invalid minutes format</string>
 
 </resources>

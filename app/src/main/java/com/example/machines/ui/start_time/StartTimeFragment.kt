@@ -14,6 +14,8 @@ import com.example.machines.R
 import com.example.machines.data.local.Constants.COLUMN
 import com.example.machines.data.local.Constants.DEFAULT_VALUE
 import com.example.machines.data.local.Constants.EMPTY
+import com.example.machines.data.local.Constants.HOURS
+import com.example.machines.data.local.Constants.MINUTES
 import com.example.machines.data.local.Constants.RUNNING
 import com.example.machines.data.local.Constants.R_H_RESET
 import com.example.machines.data.local.Constants.machineType
@@ -29,6 +31,7 @@ import com.example.machines.utils.MachineUtils.changeThumbTint
 import com.example.machines.utils.click
 import com.example.machines.utils.drawScreenHeader
 import com.example.machines.utils.toast
+import com.example.machines.utils.validateHoursOrMinutes
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -49,6 +52,11 @@ class StartTimeFragment : Fragment() {
         viewModel = ViewModelProvider(this)[StartTimeViewModel::class.java]
         binding.header.drawScreenHeader(getString(R.string.start_time), this)
         setClickListeners()
+
+        requireContext().apply {
+            validateHoursOrMinutes(binding.etHours, HOURS)
+            validateHoursOrMinutes(binding.etMinutes, MINUTES)
+        }
         return binding.root
     }
 

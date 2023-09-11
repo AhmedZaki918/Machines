@@ -27,6 +27,8 @@ object Constants {
     const val COLUMN = ":"
     const val DOT = "."
     const val MINUTES_RESET = "00"
+    const val HOURS = "hours"
+    const val MINUTES = "minutes"
 
     const val RH_LIMESTONE_KEY = "limestone_key"
     const val RH_CLAY_CRUSHER_KEY = "clay_crusher_key"
